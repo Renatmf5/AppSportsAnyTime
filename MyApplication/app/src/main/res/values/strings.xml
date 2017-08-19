@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Cap04-Activity</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="usuario">Usuário</string>
+    <string name="senha">Senha</string>
+    <string name="login">Login</string>
+    <string name="title_main_activity">Login</string>
+    <string name="title_bem_vindo_activity">Bem Vindo</string>
+
+    <string-array name="tipos">
+        <item>Campo</item>
+        <item>Society</item>
+        <item>Futsal</item>
+    </string-array>
+    <string-array name="posicoes">
+        <item>Goleiro</item>
+        <item>Zagueiro</item>
+        <item>Lateral</item>
+        <item>Meia</item>
+        <item>Atacante</item>
+    </string-array>
+    <string name="title_activity_home">HomeActivity</string>
+
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_example">Example action</string>
+    <string name="title_activity_maps">Map</string>
+</resources>
