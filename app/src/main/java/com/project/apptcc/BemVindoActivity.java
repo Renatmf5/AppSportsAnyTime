@@ -15,7 +15,7 @@ public class BemVindoActivity extends DebugActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_bem_vindo);
+        setContentView(R.layout.layout.activity_bem_vindo);
 
         Bundle args = getIntent().getExtras();
         String nome = args.getString("nome");
