@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1"
+    android:background="@color/defaultBackground">
+    
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="150sp"
+        android:id="@+id/imgTime"
+        android:background="@color/wallet_bright_foreground_disabled_holo_light"/>
+
+    <TextView
+        android:id="@+id/textViewName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#FFF"
+        android:textSize="24dp"
+        android:paddingTop="5sp"
+        android:paddingBottom="5sp"
+        android:layout_below="@id/imgTime"/>
+
+    <TextView
+        android:id="@+id/textViewPosition"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#259b24"
+        android:textColor="#FFF"
+        android:textSize="24dp"
+        android:paddingTop="5sp"
+        android:paddingBottom="5sp"
+        android:layout_below="@id/textViewName"/>
+
+    <ListView
+        android:id="@+id/listReviews"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewPosition"></ListView>
+
+</RelativeLayout>

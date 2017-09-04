@@ -22,7 +22,6 @@
         <item>Meia</item>
         <item>Atacante</item>
     </string-array>
-    <string name="title_activity_home">HomeActivity</string>
 
     <string name="title_section1">Section 1</string>
     <string name="title_section2">Section 2</string>
@@ -32,7 +31,6 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_example">Example action</string>
-    <string name="title_activity_maps">Map</string>
     <string name="e_mail">E-mail</string>
     <string name="main_title">Entrar</string>
     <string name="main_btn_register_player">Sou jogador</string>
@@ -46,4 +44,7 @@
     <string name="lbl_team_estado">Estado</string>
     <string name="lbl_player_title">Sou jogador</string>
     <string name="lbl_player_posicao">Posição</string>
+    <string name="title_activity_home_time">HomeTime</string>
+    <string name="title_activity_home_jogador">HomeJogador</string>
+    <string name="title_activity_detalhes_time">DetalhesTime</string>
 </resources>
