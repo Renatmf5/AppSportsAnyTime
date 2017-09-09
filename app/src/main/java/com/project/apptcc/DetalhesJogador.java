@@ -1,7 +1,8 @@
 package com.project.apptcc;
 
-import android.os.Bundle;
 import android.app.Activity;
+import android.os.Bundle;
+import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -9,7 +10,8 @@ import java.util.ArrayList;
 
 import Objetos.Review;
 
-public class DetalhesTIme extends Activity {
+
+public class DetalhesJogador extends Activity {
     ArrayList<Review> listItems=new ArrayList<Review>();
     ArrayAdapter<Review> adapter;
 

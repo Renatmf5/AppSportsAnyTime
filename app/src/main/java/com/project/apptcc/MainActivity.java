@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,20 +19,17 @@ public class MainActivity extends DebugActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
-        ActionBar actionBar = getActionBar();
-        actionBar.setTitle("Login");
 
         Button btLogin = (Button) findViewById(R.id.btLogin);
         btLogin.setOnClickListener(onClickLogin());
 
-    Button btCadJogador = (Button) findViewById(R.id.btnCadJogador);
-    Button btCadTime = (Button) findViewById(R.id.btnCadTime);
+        Button btCadJogador = (Button) findViewById(R.id.btnCadJogador);
+        Button btCadTime = (Button) findViewById(R.id.btnCadTime);
         btCadTime.setOnClickListener(onClickCadTime());
         btCadJogador.setOnClickListener(onClickCadJogador());
-
-}
-
+    }
 
     private View.OnClickListener onClickCadTime(){
         return new View.OnClickListener(){
@@ -64,8 +62,6 @@ public class MainActivity extends DebugActivity {
                 String senha = tSenha.getText().toString();
 
                 if("Renato".equals(login) && "123".equals(senha)) {
-
-
                     Intent intent = new Intent(getContext(),BemVindoActivity.class);
                     Bundle params = new Bundle();
                     params.putString("nome", login);

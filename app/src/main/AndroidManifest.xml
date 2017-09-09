@@ -15,16 +15,14 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".BemVindoActivity"
             android:label="@string/title_bem_vindo_activity"
-            android:parentActivityName=".MainActivity">
-
-            <!-- Parent activity meta-data to support API level 7+ -->
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
@@ -32,7 +30,8 @@
         <activity
             android:name=".CadastroJogadorActivity"
             android:label="Cadastro"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
@@ -40,27 +39,8 @@
         <activity
             android:name=".CadastroTimeActivity"
             android:label="Cadastro"
-            android:parentActivityName=".MainActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
-        </activity>
-        <!--
-             The API key for Google Maps-based APIs is defined as a string resource.
-             (See the file "res/values/google_maps_api.xml").
-             Note that the API key is linked to the encryption key used to sign the APK.
-             You need a different API key for each encryption key, including the release key that is used to
-             sign the APK for publishing.
-             You can define the keys for the debug and release targets in src/debug/ and src/release/. 
-        -->
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="@string/google_maps_key" />
-
-        <activity
-            android:name=".MapsFragment"
-            android:label="@string/title_activity_maps"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
@@ -68,17 +48,45 @@
         <activity
             android:name=".HomeTime"
             android:label="@string/title_activity_home_time"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.project.apptcc.MainActivity" />
         </activity>
         <activity
             android:name=".HomeJogador"
-            android:label="@string/title_activity_home_jogador" />
+            android:label="@string/title_activity_home_jogador"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
         <activity
-            android:name=".DetalhesTIme"
-            android:label="@string/title_activity_detalhes_time"></activity>
+            android:name=".DetalhesTime"
+            android:label="@string/title_activity_detalhes_time"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity android:name=".DetalhesJogador" />
+        <activity
+            android:name=".Review"
+            android:label="@string/title_activity_review"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.project.apptcc.MainActivity" />
+        </activity>
+        <activity
+            android:name=".Confirmacao"
+            android:label="@string/title_activity_confirmacao"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.project.apptcc.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

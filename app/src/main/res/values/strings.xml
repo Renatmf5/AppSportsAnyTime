@@ -7,8 +7,6 @@
     <string name="usuario">Usuário</string>
     <string name="senha">Senha</string>
     <string name="login">Entrar</string>
-    <string name="title_main_activity">Login</string>
-    <string name="title_bem_vindo_activity">Bem Vindo</string>
 
     <string-array name="tipos">
         <item>Campo</item>
@@ -23,6 +21,15 @@
         <item>Atacante</item>
     </string-array>
 
+    <string name="title_main_activity">Login</string>
+    <string name="title_bem_vindo_activity">Bem Vindo</string>
+    <string name="title_activity_home_time">Time</string>
+    <string name="title_activity_home_jogador">Jogador</string>
+    <string name="title_activity_detalhes_time">Detalhes</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="title_activity_confirmacao">Confirmação</string>
+    <string name="title_activity_review">Avaliação</string>
+
     <string name="title_section1">Section 1</string>
     <string name="title_section2">Section 2</string>
     <string name="title_section3">Section 3</string>
@@ -35,7 +42,7 @@
     <string name="main_title">Entrar</string>
     <string name="main_btn_register_player">Sou jogador</string>
     <string name="main_btn_register_team">Sou um Time</string>
-    <string name="main_lbl_nao_tenho_cadastro">Não tenho cadastro...</string>
+    <string name="main_lbl_nao_tenho_cadastro">Não tenho cadastro…</string>
     <string name="cadastro_time_title">Sou um time</string>
     <string name="lbl_team_nome">Nome</string>
     <string name="lbl_team_tipo_de_jogo">Tipo de jogo</string>
@@ -44,7 +51,14 @@
     <string name="lbl_team_estado">Estado</string>
     <string name="lbl_player_title">Sou jogador</string>
     <string name="lbl_player_posicao">Posição</string>
-    <string name="title_activity_home_time">HomeTime</string>
-    <string name="title_activity_home_jogador">HomeJogador</string>
-    <string name="title_activity_detalhes_time">DetalhesTime</string>
+
+    <string name="detalhes_time_imagem_time_description">Imagem do time</string>
+    <string name="detalhes_time_quero_jogar">Quero jogar!</string>
+
+    <string name="detalhes_jogador_imagem_jogador_description">Imagem do Jogador</string>
+    <string name="detalhes_jogador_joga_pra_gente">Joga pra gente!</string>
+    <string name="detalhes_jogador_title_avaliacoes">Avaliações</string>
+    <string name="review_btn_enviar">Enviar</string>
+
+    <string name="confirmacao_title">Confirmado!</string>
 </resources>

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -33,7 +34,7 @@ public class HomeTime extends AppCompatActivity implements OnMapReadyCallback {
     }
 
     private void initJogadoresList() {
-        ListView listView = findViewById(R.id.listJogadores);
+        ListView listView = (ListView) findViewById(R.id.listJogadores);
         adapter = new ArrayAdapter<Jogador>(
                 this,
                 android.R.layout.simple_list_item_2,
@@ -56,7 +57,7 @@ public class HomeTime extends AppCompatActivity implements OnMapReadyCallback {
 
     private void initMap() {
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
+                .findFragmentById(R.id.mapView);
         mapFragment.getMapAsync(this);
     }
 

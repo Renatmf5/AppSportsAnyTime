@@ -9,11 +9,11 @@
     android:background="@color/defaultBackground">
 
     <ImageView
-        android:id="@+id/imgJogador"
+        android:id="@+id/imgTime"
         android:layout_width="match_parent"
         android:layout_height="150sp"
         android:background="@color/wallet_bright_foreground_disabled_holo_light"
-        android:contentDescription="@string/detalhes_jogador_imagem_jogador_description"/>
+        android:contentDescription="@string/detalhes_time_imagem_time_description"/>
 
     <TextView
         android:id="@+id/textViewName"
@@ -23,7 +23,8 @@
         android:textSize="24sp"
         android:paddingTop="5sp"
         android:paddingBottom="5sp"
-        android:layout_below="@id/imgJogador"/>
+        android:layout_below="@id/imgTime"
+        android:background="#8bc34a" />
 
     <TextView
         android:id="@+id/textViewPosition"
@@ -37,19 +38,24 @@
         android:layout_below="@id/textViewName"/>
 
     <TextView
-        android:id="@+id/textViewDescription"
+        android:id="@+id/textViewTitleAvaliacoes"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:maxHeight="175sp"
         android:layout_below="@id/textViewPosition"
-        android:background="#FFF"/>
+        android:text="@string/detalhes_jogador_title_avaliacoes"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        android:background="#F0F0F2"
+        android:paddingTop="10sp"
+        android:paddingBottom="10sp"/>
 
-    <fragment
-        android:id="@+id/mapEndereco"
-        android:layout_width="fill_parent"
-        android:layout_height="200sp"
-        android:layout_below="@id/textViewDescription"
-        class="com.google.android.gms.maps.MapFragment"/>
+    <ListView
+        android:id="@+id/listReviews"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewTitleAvaliacoes"
+        android:background="#FFF" />
+
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -62,7 +68,7 @@
             android:textAlignment="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/detalhes_time_quero_jogar"
+            android:text="@string/detalhes_jogador_joga_pra_gente"
             android:textColor="#FFF"
             android:background="#2baf2b"/>
 

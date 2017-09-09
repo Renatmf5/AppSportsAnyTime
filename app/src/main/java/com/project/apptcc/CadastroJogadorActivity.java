@@ -1,15 +1,11 @@
 package com.project.apptcc;
 
-import android.app.FragmentManager;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
-import android.view.View;
+import android.view.Window;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.Spinner;
 
 
@@ -30,16 +26,6 @@ public class CadastroJogadorActivity extends AppCompatActivity {
         ArrayAdapter adapterTipos = ArrayAdapter.createFromResource(this,R.array.tipos,android.R.layout.simple_spinner_item);
         spPosicoes.setAdapter(adapterPosicoes);
         spTipos.setAdapter(adapterTipos);
-        Button btFindMatch = (Button) findViewById(R.id.btnBuscarPartida);
-
-
-        fragmetManager = getSupportFragmentManager();
-
-        FragmentTransaction transaction = fragmetManager.beginTransaction();
-
-        transaction.add(R.id.container, new MapsFragment(), "MapsFragment" );
-
-        transaction.commitAllowingStateLoss();
     }
 
 
