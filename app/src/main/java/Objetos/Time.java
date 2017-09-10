@@ -1,48 +1,73 @@
 package Objetos;
 
+import java.io.Serializable;
 import java.util.Date;
 
-/**
- * Created by RenatoMorenoFerreira on 13/08/2017.
- */
+public class Time implements Serializable {
+    private String id;
+    private String nome;
+    private String tipoDeJogo;
+    private String telefone;
+    private Usuario usuario;
+    private Endereco endereco;
 
-public class Time {
+    public Time() {}
 
-    private int codPartida;
-    private String nomeTime;
-    private String tipoPartida;
-    private Date dataPartida;
-
-
-    public int getCodPartida() {
-        return codPartida;
+    public Time(String id, String nome, String tipoDeJogo, String telefone, Usuario usuario, Endereco endereco) {
+        this.id = id;
+        this.nome = nome;
+        this.tipoDeJogo = tipoDeJogo;
+        this.telefone = telefone;
+        this.usuario = usuario;
+        this.endereco = endereco;
     }
 
-    public void setCodPartida(int codPartida) {
-        this.codPartida = codPartida;
+    public Time(String nome, String tipoDeJogo, String telefone, Usuario usuario, Endereco endereco) {
+
+        this.nome = nome;
+        this.tipoDeJogo = tipoDeJogo;
+        this.telefone = telefone;
+        this.usuario = usuario;
+        this.endereco = endereco;
     }
 
-    public String getNomeTime() {
-        return nomeTime;
+    public String getNome() {
+        return nome;
     }
 
-    public void setNomeTime(String nomeTime) {
-        this.nomeTime = nomeTime;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public String getTipoPartida() {
-        return tipoPartida;
+    public String getTipoDeJogo() {
+        return tipoDeJogo;
     }
 
-    public void setTipoPartida(String tipoPartida) {
-        this.tipoPartida = tipoPartida;
+    public void setTipoDeJogo(String tipoDeJogo) {
+        this.tipoDeJogo = tipoDeJogo;
     }
 
-    public Date getDataPartida() {
-        return dataPartida;
+    public String getTelefone() {
+        return telefone;
     }
 
-    public void setDataPartida(Date dataPartida) {
-        this.dataPartida = dataPartida;
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
     }
 }

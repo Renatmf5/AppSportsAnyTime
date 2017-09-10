@@ -1,14 +1,73 @@
 package Objetos;
 
-/**
- * Created by RenatoMorenoFerreira on 13/08/2017.
- */
+import java.io.Serializable;
 
-public class Jogador extends Pessoa{
+public class Jogador implements Serializable {
 
+    private String id;
     private String nome;
     private String tipoDeJogo;
     private String posicao;
+    private String telefone;
+    private Endereco endereco;
+    private Usuario usuario;
+
+    public Jogador(String id) {
+        this.id = id;
+    }
+
+    public Jogador(String id, String nome) {
+        this.id = id;
+        this.nome = nome;
+    }
+
+    public Jogador(String id, String nome, String tipoDeJogo) {
+        this.id = id;
+        this.nome = nome;
+        this.tipoDeJogo = tipoDeJogo;
+    }
+
+    public Jogador(String id, String nome, String tipoDeJogo, String posicao) {
+        this.id = id;
+        this.nome = nome;
+        this.tipoDeJogo = tipoDeJogo;
+        this.posicao = posicao;
+    }
+
+    public Jogador(String id, String nome, String tipoDeJogo, String posicao, String telefone) {
+        this.id = id;
+        this.nome = nome;
+        this.tipoDeJogo = tipoDeJogo;
+        this.posicao = posicao;
+        this.telefone = telefone;
+    }
+
+    public Jogador(String id, String nome, String tipoDeJogo, String posicao, String telefone, Endereco endereco) {
+        this.id = id;
+        this.nome = nome;
+        this.tipoDeJogo = tipoDeJogo;
+        this.posicao = posicao;
+        this.telefone = telefone;
+        this.endereco = endereco;
+    }
+
+    public Jogador(String id, String nome, String tipoDeJogo, String posicao, String telefone, Endereco endereco, Usuario usuario) {
+        this.id = id;
+        this.nome = nome;
+        this.tipoDeJogo = tipoDeJogo;
+        this.posicao = posicao;
+        this.telefone = telefone;
+        this.endereco = endereco;
+        this.usuario = usuario;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getNome() {
         return nome;
@@ -32,5 +91,29 @@ public class Jogador extends Pessoa{
 
     public void setPosicao(String posicao) {
         this.posicao = posicao;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 }

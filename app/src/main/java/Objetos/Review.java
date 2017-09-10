@@ -1,6 +1,8 @@
 package Objetos;
 
-public class Review {
+import java.io.Serializable;
+
+public class Review implements Serializable {
     private int grade;
     private String description;
 

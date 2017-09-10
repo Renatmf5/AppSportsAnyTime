@@ -1,20 +1,22 @@
 package com.project.apptcc;
 
-
-import android.app.ActionBar;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+import org.jdeferred.DoneCallback;
+import org.jdeferred.FailCallback;
+import Services.LoginService.LoginService;
 
 
 public class MainActivity extends DebugActivity {
+    private final Activity that = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,13 +24,13 @@ public class MainActivity extends DebugActivity {
 
         setContentView(R.layout.activity_main);
 
-        Button btLogin = (Button) findViewById(R.id.btLogin);
-        btLogin.setOnClickListener(onClickLogin());
-
         Button btCadJogador = (Button) findViewById(R.id.btnCadJogador);
         Button btCadTime = (Button) findViewById(R.id.btnCadTime);
-        btCadTime.setOnClickListener(onClickCadTime());
+        Button btLogin = (Button) findViewById(R.id.btLogin);
+
         btCadJogador.setOnClickListener(onClickCadJogador());
+        btCadTime.setOnClickListener(onClickCadTime());
+        btLogin.setOnClickListener(onClickLogin());
     }
 
     private View.OnClickListener onClickCadTime(){
@@ -61,27 +63,32 @@ public class MainActivity extends DebugActivity {
                 String login = tLogin.getText().toString();
                 String senha = tSenha.getText().toString();
 
-                if("Renato".equals(login) && "123".equals(senha)) {
-                    Intent intent = new Intent(getContext(),BemVindoActivity.class);
-                    Bundle params = new Bundle();
-                    params.putString("nome", login);
-                    intent.putExtras(params);
-                    startActivity(intent);
-                } else {
-                    alert("Login e senha incorretos.");
-                }
+                LoginService.execute(login, senha)
+                        .fail(new FailCallback() {
+                            @Override
+                            public void onFail(Object result) {
+                                Toast.makeText(
+                                        that,
+                                        "Credenciais inválidas",
+                                        Toast.LENGTH_SHORT
+                                ).show();
+                            }
+                        })
+                        .done(new DoneCallback() {
+                            @Override
+                            public void onDone(Object result) {
+                                Intent intent = new Intent(getContext(), BemVindoActivity.class);
+                                Bundle params = new Bundle();
+                                intent.putExtras(params);
+                                startActivity(intent);
+                            }
+                        });
             }
         };
     }
 
     private Context getContext() {
-
         return this;
-    }
-
-    private void alert(String s) {
-
-        Toast.makeText(this,s,Toast.LENGTH_SHORT).show();
     }
 
     @Override

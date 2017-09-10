@@ -61,4 +61,10 @@
     <string name="review_btn_enviar">Enviar</string>
 
     <string name="confirmacao_title">Confirmado!</string>
+    <string name="lbl_telefone_jogador">Telefone</string>
+    <string name="lbl_e_mail_jogador">E-mail</string>
+    <string name="lbl_senha_jogador">Senha</string>
+    <string name="lbl_e_mail_time">E-mail</string>
+    <string name="lbl_senha_time">Senha</string>
+    <string name="lbl_telefone_time">Telefone</string>
 </resources>

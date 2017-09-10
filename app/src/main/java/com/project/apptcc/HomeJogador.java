@@ -16,9 +16,11 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
 
+import Objetos.Jogador;
 import Objetos.Time;
 
 public class HomeJogador extends AppCompatActivity implements OnMapReadyCallback {
+    Jogador jogador;
     ArrayList<Time> listItems=new ArrayList<Time>();
     ArrayAdapter<Time> adapter;
 
@@ -26,6 +28,8 @@ public class HomeJogador extends AppCompatActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_jogador);
+
+        this.jogador = (Jogador)getIntent().getSerializableExtra("Jogador");
 
         this.initJogadoresList();
         this.initMap();

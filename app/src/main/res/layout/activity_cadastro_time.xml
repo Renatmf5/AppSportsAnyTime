@@ -22,6 +22,7 @@
             android:textSize="26sp"
             android:layout_marginBottom="20dp" />
 
+        <!-- Nome -->
         <TextView
             android:id="@+id/textView3"
             android:layout_width="match_parent"
@@ -41,6 +42,64 @@
             android:textStyle="bold"
             android:textSize="16sp" />
 
+        <!-- Telefone -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/lbl_telefone_time"
+            android:textAlignment="center"
+            android:textColor="#FFF"
+            android:textStyle="bold"
+            android:textSize="16sp" />
+        <EditText
+            android:id="@+id/edtTelefoneTime"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:textAlignment="center"
+            android:inputType="phone"
+            android:textColor="#FFF"
+            android:textStyle="bold"
+            android:textSize="16sp" />
+
+        <!-- Email -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/lbl_e_mail_time"
+            android:textAlignment="center"
+            android:textColor="#FFF"
+            android:textStyle="bold"
+            android:textSize="16sp" />
+        <EditText
+            android:id="@+id/edtEmailTime"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:textAlignment="center"
+            android:inputType="textEmailAddress"
+            android:textColor="#FFF"
+            android:textStyle="bold"
+            android:textSize="16sp" />
+
+        <!-- Senha -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/lbl_senha_time"
+            android:textAlignment="center"
+            android:textColor="#FFF"
+            android:textStyle="bold"
+            android:textSize="16sp" />
+        <EditText
+            android:id="@+id/edtSenhaTime"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:textAlignment="center"
+            android:inputType="textPassword"
+            android:textColor="#FFF"
+            android:textStyle="bold"
+            android:textSize="16sp" />
+
+        <!-- Tipo de jogo -->
         <TextView
             android:id="@+id/textView4"
             android:layout_width="match_parent"
@@ -62,6 +121,7 @@
             android:layout_marginTop="5sp"
             android:layout_marginBottom="5sp" />
 
+        <!-- Endereço -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -80,6 +140,7 @@
             android:textStyle="bold"
             android:textSize="16sp" />
 
+        <!-- Cidade -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -98,6 +159,7 @@
             android:textStyle="bold"
             android:textSize="16sp" />
 
+        <!-- Estado -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -132,7 +194,8 @@
             android:text="Entrar"
             android:textColor="#FFF"
             android:textSize="16sp"
-            android:background="#0a8f08"/>
+            android:background="#0a8f08"
+            android:onClick="registrar"/>
 
     </RelativeLayout>
 </RelativeLayout>
