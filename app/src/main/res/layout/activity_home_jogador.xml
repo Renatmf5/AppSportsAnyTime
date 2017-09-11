@@ -22,7 +22,7 @@
         <ListView
             android:id="@+id/listTimes"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"/>
     </RelativeLayout>
 
 </LinearLayout>

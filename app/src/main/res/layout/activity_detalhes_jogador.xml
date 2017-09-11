@@ -8,26 +8,25 @@
     android:weightSum="1"
     android:background="@color/defaultBackground">
 
-    <ImageView
+    <!--<ImageView
         android:id="@+id/imgTime"
         android:layout_width="match_parent"
         android:layout_height="150sp"
         android:background="@color/wallet_bright_foreground_disabled_holo_light"
-        android:contentDescription="@string/detalhes_time_imagem_time_description"/>
+        android:contentDescription="@string/detalhes_time_imagem_time_description"/>-->
 
     <TextView
-        android:id="@+id/textViewName"
+        android:id="@+id/textViewNameJogador"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="#FFF"
         android:textSize="24sp"
         android:paddingTop="5sp"
         android:paddingBottom="5sp"
-        android:layout_below="@id/imgTime"
         android:background="#8bc34a" />
 
     <TextView
-        android:id="@+id/textViewPosition"
+        android:id="@+id/textViewPositionJogador"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#259b24"
@@ -35,13 +34,13 @@
         android:textSize="24sp"
         android:paddingTop="5sp"
         android:paddingBottom="5sp"
-        android:layout_below="@id/textViewName"/>
+        android:layout_below="@id/textViewNameJogador"/>
 
     <TextView
         android:id="@+id/textViewTitleAvaliacoes"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/textViewPosition"
+        android:layout_below="@id/textViewPositionJogador"
         android:text="@string/detalhes_jogador_title_avaliacoes"
         android:textAlignment="center"
         android:textSize="16sp"

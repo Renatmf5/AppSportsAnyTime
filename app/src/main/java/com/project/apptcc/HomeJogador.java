@@ -1,7 +1,10 @@
 package com.project.apptcc;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -65,6 +68,20 @@ public class HomeJogador extends AppCompatActivity implements OnMapReadyCallback
         });
 
         adapter.notifyDataSetChanged();
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(
+                    AdapterView<?> parent,
+                    View view,
+                    int position,
+                    long id
+            ) {
+                Time time = (Time)parent.getItemAtPosition(position);
+                Intent i = new Intent(HomeJogador.this, DetalhesTime.class);
+                i.putExtra("Time", time);
+                startActivity(i);
+            }
+        });
     }
 
     private void initMap() {
@@ -80,5 +97,4 @@ public class HomeJogador extends AppCompatActivity implements OnMapReadyCallback
                 .title("FIAP"));
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(fiap));
     }
-
 }
