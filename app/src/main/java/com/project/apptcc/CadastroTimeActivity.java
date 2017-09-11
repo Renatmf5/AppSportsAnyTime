@@ -1,14 +1,10 @@
 package com.project.apptcc;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -55,8 +51,8 @@ public class CadastroTimeActivity extends Activity {
 
         DeferredManager deferredManager = new DefaultDeferredManager();
         deferredManager.when(
-                Services.UsuarioService.Criador.execute(time.getUsuario()),
-                Services.EnderecoService.Criador.execute(time.getEndereco())
+                Services.Usuario.Criador.execute(time.getUsuario()),
+                Services.Endereco.Criador.execute(time.getEndereco())
         ).done(
                 this.buildCriadorUsuarioEEnderecoDoneCallback(time)
         ).fail(
@@ -116,7 +112,7 @@ public class CadastroTimeActivity extends Activity {
                     e.printStackTrace();
                 }
 
-                Services.TimeService.Criador.execute(time)
+                Services.Time.Criador.execute(time)
                         .done(activity.buildCriadorTimeDoneCallback(time))
                         .fail(activity.buildCriadorTimeFailCallback(time));
             }

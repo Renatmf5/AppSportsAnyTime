@@ -1,8 +1,6 @@
-package Services.EnderecoService;
+package Services.Time;
 
-import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.JsonHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 
 import org.jdeferred.Deferred;
 import org.jdeferred.Promise;
@@ -11,26 +9,25 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import Objetos.Endereco;
 import Services.HttpService;
 import cz.msebera.android.httpclient.Header;
 
-public class Criador {
+public class Listador {
 
-    public static Promise execute(Endereco endereco) {
+    public static Promise execute() {
         final Deferred deferred = new DeferredObject();
-        Promise promise = deferred.promise();
+        final Promise promise = deferred.promise();
 
-        HttpService.post("/addresses", Criador.makeParams(endereco), new JsonHttpResponseHandler() {
+        HttpService.get("/teams", null, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 deferred.resolve(response);
             }
 
             @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONArray timeline) {
+            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
                 try {
-                    JSONObject json = (JSONObject) timeline.get(0);
+                    JSONObject json = (JSONObject) response.get(0);
                     deferred.resolve(json);
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -38,31 +35,32 @@ public class Criador {
             }
 
             @Override
-            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse) {
-                deferred.reject("");
+            public void onSuccess(int statusCode, Header[] headers, String responseString) {
+                try {
+                    JSONObject json = new JSONObject(responseString);
+                    deferred.resolve(json);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
 
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-                deferred.reject("");
+                deferred.reject(null);
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse) {
+                deferred.reject(null);
             }
 
             @Override
             public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
-                deferred.reject("");
+                deferred.reject(null);
             }
         });
 
         return promise;
-    }
-
-    private static RequestParams makeParams(Endereco endereco) {
-        RequestParams params = new RequestParams();
-        params.add("address", endereco.getAddress());
-        params.add("city", endereco.getCity());
-        params.add("state", endereco.getState());
-
-        return params;
     }
 
 }

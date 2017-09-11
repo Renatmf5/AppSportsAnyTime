@@ -1,7 +1,6 @@
 package com.project.apptcc;
 
 import android.app.Activity;
-import android.app.Service;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -17,7 +16,6 @@ import org.jdeferred.FailCallback;
 import org.jdeferred.impl.DefaultDeferredManager;
 import org.jdeferred.multiple.MultipleResults;
 import org.jdeferred.multiple.OneReject;
-import org.jdeferred.multiple.OneResult;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -60,8 +58,8 @@ public class CadastroJogadorActivity extends Activity {
 
         DeferredManager deferredManager = new DefaultDeferredManager();
         deferredManager.when(
-                Services.UsuarioService.Criador.execute(jogador.getUsuario()),
-                Services.EnderecoService.Criador.execute(jogador.getEndereco())
+                Services.Usuario.Criador.execute(jogador.getUsuario()),
+                Services.Endereco.Criador.execute(jogador.getEndereco())
         ).done(
                 this.buildCriadorUsuarioEEnderecoDoneCallback(jogador)
         ).fail(
@@ -123,7 +121,7 @@ public class CadastroJogadorActivity extends Activity {
                     e.printStackTrace();
                 }
 
-                Services.JogadorService.Criador.execute(jogador)
+                Services.Jogador.Criador.execute(jogador)
                         .done(activity.buildCriadorJogadorDoneCallback(jogador))
                         .fail(activity.buildCriadorJogadorFailCallback(jogador));
             }

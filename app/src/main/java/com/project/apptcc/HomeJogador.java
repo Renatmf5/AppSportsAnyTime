@@ -1,9 +1,7 @@
 package com.project.apptcc;
 
 import android.os.Bundle;
-import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -23,7 +21,7 @@ import java.util.ArrayList;
 
 import Objetos.Jogador;
 import Objetos.Time;
-import Services.TimeService.Listador;
+import Services.Time.Listador;
 
 public class HomeJogador extends AppCompatActivity implements OnMapReadyCallback {
     Jogador jogador;

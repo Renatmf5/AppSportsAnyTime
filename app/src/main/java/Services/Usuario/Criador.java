@@ -1,6 +1,5 @@
-package Services.UsuarioService;
+package Services.Usuario;
 
-import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 

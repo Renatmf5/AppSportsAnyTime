@@ -1,4 +1,4 @@
-package Services.LoginService;
+package Services.Login;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;

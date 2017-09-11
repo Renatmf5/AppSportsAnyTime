@@ -12,7 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import org.jdeferred.DoneCallback;
 import org.jdeferred.FailCallback;
-import Services.LoginService.LoginService;
+import Services.Login.LoginService;
 
 
 public class MainActivity extends DebugActivity {

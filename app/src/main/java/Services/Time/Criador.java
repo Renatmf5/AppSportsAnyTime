@@ -1,4 +1,4 @@
-package Services.TimeService;
+package Services.Time;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;

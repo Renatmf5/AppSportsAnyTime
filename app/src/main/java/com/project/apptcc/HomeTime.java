@@ -21,7 +21,7 @@ import java.util.ArrayList;
 
 import Objetos.Jogador;
 import Objetos.Time;
-import Services.JogadorService.Listador;
+import Services.Jogador.Listador;
 
 public class HomeTime extends AppCompatActivity implements OnMapReadyCallback {
     Time time;
