@@ -1,5 +1,8 @@
 package Objetos;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.Serializable;
 
 public class Jogador implements Serializable {
@@ -11,6 +14,22 @@ public class Jogador implements Serializable {
     private String telefone;
     private Endereco endereco;
     private Usuario usuario;
+
+    public Jogador(JSONObject json) {
+        try {
+            if (json.has("id")) {
+                this.setId(json.get("id").toString());
+            }
+            if (json.has("name")) {
+                this.setNome(json.get("name").toString());
+            }
+            if (json.has("pitch_type")) {
+                this.setTipoDeJogo(json.get("pitch_type").toString());
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
 
     public Jogador(String id) {
         this.id = id;

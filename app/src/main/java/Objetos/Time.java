@@ -1,5 +1,8 @@
 package Objetos;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -12,6 +15,25 @@ public class Time implements Serializable {
     private Endereco endereco;
 
     public Time() {}
+
+    public Time(JSONObject json) {
+        try {
+           if (json.has("id")) {
+               this.setId(json.get("id").toString());
+           }
+           if (json.has("name")) {
+               this.setNome(json.get("name").toString());
+           }
+           if (json.has("pitch_type")) {
+               this.setTipoDeJogo(json.get("pitch_type").toString());
+           }
+           if (json.has("responsible_phone")) {
+               this.setTelefone(json.get("responsible_phone").toString());
+           }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
 
     public Time(String id, String nome, String tipoDeJogo, String telefone, Usuario usuario, Endereco endereco) {
         this.id = id;
@@ -29,6 +51,14 @@ public class Time implements Serializable {
         this.telefone = telefone;
         this.usuario = usuario;
         this.endereco = endereco;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getNome() {

@@ -35,9 +35,9 @@ public class LoginService {
                     }
 
                     @Override
-                    public void onSuccess(int statusCode, Header[] headers, JSONArray timeline) {
+                    public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
                         try {
-                            JSONObject json = (JSONObject) timeline.get(0);
+                            JSONObject json = (JSONObject) response.get(0);
                             deferred.resolve(json);
                         } catch (JSONException e) {
                             e.printStackTrace();

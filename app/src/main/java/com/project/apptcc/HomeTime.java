@@ -1,11 +1,7 @@
 package com.project.apptcc;
 
-import android.app.ListActivity;
 import android.os.Bundle;
-import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -16,11 +12,19 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import org.jdeferred.DoneCallback;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 import Objetos.Jogador;
+import Objetos.Time;
+import Services.JogadorService.Listador;
 
 public class HomeTime extends AppCompatActivity implements OnMapReadyCallback {
+    Time time;
     ArrayList<Jogador> listItems=new ArrayList<Jogador>();
     ArrayAdapter<Jogador> adapter;
 
@@ -28,6 +32,8 @@ public class HomeTime extends AppCompatActivity implements OnMapReadyCallback {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_time);
+
+        this.time = (Time)getIntent().getSerializableExtra("Time");
 
         this.initJogadoresList();
         this.initMap();
@@ -42,16 +48,22 @@ public class HomeTime extends AppCompatActivity implements OnMapReadyCallback {
         );
         listView.setAdapter(adapter);
 
-        /**
-         * - Chamar a API
-         * - Carregar a lista de jogadores proximos
-         * - Loop nos jogadores
-         * - Adicionar à lista
-         *
-         * Jogador j = new Jogador();
-         * listItems.add(j);
-         *
-         **/
+        Listador.execute().done(new DoneCallback() {
+            @Override
+            public void onDone(Object result) {
+                try {
+                    JSONArray data = ((JSONObject)result).getJSONArray("data");
+                    for (int i = 0; i <= data.length(); i++) {
+                        listItems.add(
+                                new Jogador(data.getJSONObject(i))
+                        );
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
         adapter.notifyDataSetChanged();
     }
 

@@ -14,10 +14,16 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import org.jdeferred.DoneCallback;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 import Objetos.Jogador;
 import Objetos.Time;
+import Services.TimeService.Listador;
 
 public class HomeJogador extends AppCompatActivity implements OnMapReadyCallback {
     Jogador jogador;
@@ -31,11 +37,11 @@ public class HomeJogador extends AppCompatActivity implements OnMapReadyCallback
 
         this.jogador = (Jogador)getIntent().getSerializableExtra("Jogador");
 
-        this.initJogadoresList();
+        this.initTimesList();
         this.initMap();
     }
 
-    private void initJogadoresList() {
+    private void initTimesList() {
         ListView listView = (ListView)findViewById(R.id.listJogadores);
         adapter = new ArrayAdapter<Time>(
                 this,
@@ -44,16 +50,22 @@ public class HomeJogador extends AppCompatActivity implements OnMapReadyCallback
         );
         listView.setAdapter(adapter);
 
-        /**
-         * - Chamar a API
-         * - Carregar a lista de times proximos
-         * - Loop nos times
-         * - Adicionar à lista
-         *
-         * Time time = new Time();
-         * listItems.add(time);
-         *
-         **/
+        Listador.execute().done(new DoneCallback() {
+            @Override
+            public void onDone(Object result) {
+                try {
+                    JSONArray data = ((JSONObject)result).getJSONArray("data");
+                    for (int i = 0; i <= data.length(); i++) {
+                        listItems.add(
+                                new Time(data.getJSONObject(i))
+                        );
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
         adapter.notifyDataSetChanged();
     }
 
