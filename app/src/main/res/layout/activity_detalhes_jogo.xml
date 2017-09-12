@@ -61,7 +61,7 @@
             android:textAlignment="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/detalhes_time_quero_jogar"
+            android:text="@string/detalhes_jogo_quero_jogar"
             android:textColor="#FFF"
             android:background="#2baf2b"/>
 

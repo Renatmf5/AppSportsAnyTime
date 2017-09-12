@@ -18,18 +18,21 @@ public class Time implements Serializable {
 
     public Time(JSONObject json) {
         try {
-           if (json.has("id")) {
-               this.setId(json.get("id").toString());
-           }
-           if (json.has("name")) {
-               this.setNome(json.get("name").toString());
-           }
-           if (json.has("pitch_type")) {
-               this.setTipoDeJogo(json.get("pitch_type").toString());
-           }
-           if (json.has("responsible_phone")) {
-               this.setTelefone(json.get("responsible_phone").toString());
-           }
+            if (json.has("id")) {
+                this.setId(json.get("id").toString());
+            }
+            if (json.has("name")) {
+                this.setNome(json.get("name").toString());
+            }
+            if (json.has("pitch_type")) {
+                this.setTipoDeJogo(json.get("pitch_type").toString());
+            }
+            if (json.has("responsible_phone")) {
+                this.setTelefone(json.get("responsible_phone").toString());
+            }
+            if (json.has("user")) {
+                this.setUsuario(new Usuario(json.getJSONObject("user")));
+            }
         } catch (JSONException e) {
             e.printStackTrace();
         }

@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="150sp"
         android:background="@color/wallet_bright_foreground_disabled_holo_light"
-        android:contentDescription="@string/detalhes_time_imagem_time_description"/>-->
+        android:contentDescription="@string/detalhes_jogo_imagem_time_description"/>-->
 
     <TextView
         android:id="@+id/textViewNameJogador"

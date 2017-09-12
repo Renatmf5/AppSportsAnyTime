@@ -18,13 +18,25 @@ public class Jogador implements Serializable {
     public Jogador(JSONObject json) {
         try {
             if (json.has("id")) {
-                this.setId(json.get("id").toString());
+                this.setId(json.getString("id"));
             }
             if (json.has("name")) {
-                this.setNome(json.get("name").toString());
+                this.setNome(json.getString("name"));
             }
             if (json.has("pitch_type")) {
-                this.setTipoDeJogo(json.get("pitch_type").toString());
+                this.setTipoDeJogo(json.getString("pitch_type"));
+            }
+            if (json.has("telephone")) {
+                this.setTelefone(json.getString("telephone"));
+            }
+            if (json.has("position")) {
+                this.setPosicao(json.getString("position"));
+            }
+            if (json.has("address")) {
+                this.setEndereco(new Endereco(json.getJSONObject("address")));
+            }
+            if (json.has("user")) {
+                this.setUsuario(new Usuario(json.getJSONObject("user")));
             }
         } catch (JSONException e) {
             e.printStackTrace();

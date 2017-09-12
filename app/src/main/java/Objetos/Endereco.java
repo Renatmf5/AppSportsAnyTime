@@ -1,5 +1,8 @@
 package Objetos;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.Serializable;
 
 public class Endereco implements Serializable {
@@ -8,6 +11,25 @@ public class Endereco implements Serializable {
     private String address;
     private String city;
     private String state;
+
+    public Endereco(JSONObject json) {
+        try {
+            if (json.has("id")) {
+                this.setId(json.getString("id"));
+            }
+            if (json.has("address")) {
+                this.setAddress(json.getString("address"));
+            }
+            if (json.has("city")) {
+                this.setCity(json.getString("city"));
+            }
+            if (json.has("state")) {
+                this.setState(json.getString("state"));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
 
     public Endereco(String id, String address, String city, String state) {
         this.id = id;

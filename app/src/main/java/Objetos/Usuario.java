@@ -1,5 +1,8 @@
 package Objetos;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.Serializable;
 
 public class Usuario implements Serializable {
@@ -13,6 +16,22 @@ public class Usuario implements Serializable {
         this.name = name;
         this.email = email;
         this.password = password;
+    }
+
+    public Usuario(JSONObject json) {
+        try {
+            if (json.has("id")) {
+                this.setId(json.getString("id"));
+            }
+            if (json.has("name")) {
+                this.setName(json.getString("name"));
+            }
+            if (json.has("email")) {
+                this.setEmail(json.getString("email"));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     public String getId() {

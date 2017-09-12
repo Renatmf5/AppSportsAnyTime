@@ -2,7 +2,6 @@ package com.project.apptcc;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -26,12 +25,12 @@ public class DetalhesJogador extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detalhes_time);
-
-        this.initListReviews();
+        setContentView(R.layout.activity_detalhes_jogo);
 
         this.jogador = (Jogador) getIntent().getSerializableExtra("Jogador");
         ((TextView)findViewById(R.id.textViewNameJogador)).setText(jogador.getNome());
+
+        this.initListReviews();
     }
 
     private void initListReviews() {

@@ -8,7 +8,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -23,13 +22,16 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import Objetos.Jogador;
-import Objetos.Time;
+import Objetos.Jogo;
+import Services.Endereco.DescobrirLatLong;
+import Services.Endereco.GeoPoint;
 import Services.Time.Listador;
 
 public class HomeJogador extends AppCompatActivity implements OnMapReadyCallback {
+    final HomeJogador activity = this;
     Jogador jogador;
-    ArrayList<Time> listItems=new ArrayList<Time>();
-    ArrayAdapter<Time> adapter;
+    ArrayList<Jogo> listItems=new ArrayList<Jogo>();
+    ArrayAdapter<Jogo> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,13 +40,12 @@ public class HomeJogador extends AppCompatActivity implements OnMapReadyCallback
 
         this.jogador = (Jogador)getIntent().getSerializableExtra("Jogador");
 
-        this.initTimesList();
         this.initMap();
     }
 
-    private void initTimesList() {
+    private void initJogosList(final GoogleMap googleMap) {
         ListView listView = (ListView)findViewById(R.id.listJogadores);
-        adapter = new ArrayAdapter<Time>(
+        adapter = new ArrayAdapter<Jogo>(
                 this,
                 android.R.layout.simple_list_item_2,
                 listItems
@@ -57,9 +58,20 @@ public class HomeJogador extends AppCompatActivity implements OnMapReadyCallback
                 try {
                     JSONArray data = ((JSONObject)result).getJSONArray("data");
                     for (int i = 0; i <= data.length(); i++) {
-                        listItems.add(
-                                new Time(data.getJSONObject(i))
+                        Jogo jogo = new Jogo(data.getJSONObject(i));
+                        listItems.add(jogo);
+
+                        GeoPoint point = DescobrirLatLong.descobrir(
+                                activity,
+                                jogo.getEndereco().getAddress()
+                                + ", "
+                                + jogo.getEndereco().getCity()
+                                + ", "
+                                + jogo.getEndereco().getState()
                         );
+                        googleMap.addMarker(new MarkerOptions()
+                                .position(new LatLng(point.getLatitude(), point.getLongitude()))
+                                .title(jogo.getTime().getNome()));
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -76,9 +88,9 @@ public class HomeJogador extends AppCompatActivity implements OnMapReadyCallback
                     int position,
                     long id
             ) {
-                Time time = (Time)parent.getItemAtPosition(position);
-                Intent i = new Intent(HomeJogador.this, DetalhesTime.class);
-                i.putExtra("Time", time);
+                Jogo jogo = (Jogo)parent.getItemAtPosition(position);
+                Intent i = new Intent(HomeJogador.this, DetalhesJogo.class);
+                i.putExtra("Jogo", jogo);
                 startActivity(i);
             }
         });
@@ -92,9 +104,6 @@ public class HomeJogador extends AppCompatActivity implements OnMapReadyCallback
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        LatLng fiap = new LatLng(-23.57681, -46.6311684);
-        googleMap.addMarker(new MarkerOptions().position(fiap)
-                .title("FIAP"));
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(fiap));
+        this.initJogosList(googleMap);
     }
 }
