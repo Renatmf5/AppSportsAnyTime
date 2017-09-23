@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -16,14 +16,28 @@
         android:layout_height="300sp"
         tools:context="com.project.apptcc.HomeTime" />
 
-    <RelativeLayout
+    <ListView
+        android:id="@+id/listJogadores"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_width="match_parent">
+        android:layout_below="@id/mapView" />
 
-        <ListView
-            android:id="@+id/listJogadores"
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#2baf2b">
+
+        <Button
+            android:id="@+id/btnNovoJogo"
+            android:textAlignment="center"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="@string/detalhes_jogador_joga_pra_gente"
+            android:textColor="#FFF"
+            android:onClick="abrirNovoJogo"
+            android:background="#2baf2b"/>
+
     </RelativeLayout>
 
-</LinearLayout>
+</RelativeLayout>

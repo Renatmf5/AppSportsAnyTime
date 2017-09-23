@@ -1,4 +1,4 @@
-package Services.Time.Review;
+package Services.Time.Avaliacao;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;

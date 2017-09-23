@@ -30,5 +30,6 @@ dependencies {
     compile 'com.google.android.gms:play-services-maps:11.0.1'
     compile 'com.loopj.android:android-async-http:1.4.9'
     compile 'org.jdeferred:jdeferred-android-aar:1.2.6'
+    compile 'com.thomashaertel:multispinner:0.1.1'
     testCompile 'junit:junit:4.12'
 }

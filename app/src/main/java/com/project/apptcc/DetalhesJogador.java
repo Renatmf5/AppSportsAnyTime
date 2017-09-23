@@ -37,7 +37,7 @@ public class DetalhesJogador extends Activity {
         ListView listReviews = findViewById(R.id.listReviews);
         listReviews.setAdapter(adapter);
 
-        Services.Jogador.Review.Listador.execute(this.jogador).done(new DoneCallback() {
+        Services.Jogador.Avaliacao.Listador.execute(this.jogador).done(new DoneCallback() {
             @Override
             public void onDone(Object result) {
                 try {

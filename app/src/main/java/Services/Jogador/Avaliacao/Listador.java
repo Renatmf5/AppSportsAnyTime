@@ -1,4 +1,4 @@
-package Services.Jogador.Review;
+package Services.Jogador.Avaliacao;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
 

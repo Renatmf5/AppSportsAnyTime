@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.View;
-import android.view.Window;
 import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -59,11 +58,11 @@ public class Review extends Activity {
     }
 
     private Promise enviarAvaliacaoTime() {
-        return Services.Time.Review.Criador.execute(this.time, criarReview());
+        return Services.Time.Avaliacao.Criador.execute(this.time, criarReview());
     }
 
     private Promise enviarAvaliacaoJogador() {
-        return Services.Jogador.Review.Criador.execute(this.jogador, criarReview());
+        return Services.Jogador.Avaliacao.Criador.execute(this.jogador, criarReview());
     }
 
     private Objetos.Review criarReview() {

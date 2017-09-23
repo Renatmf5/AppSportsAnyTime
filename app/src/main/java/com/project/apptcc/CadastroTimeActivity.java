@@ -153,7 +153,7 @@ public class CadastroTimeActivity extends Activity {
                         activity,
                         "Ocorreu um erro ao salvar o seu registro. Tente novamente, por favor",
                         Toast.LENGTH_SHORT
-                );
+                ).show();
             }
         };
     }

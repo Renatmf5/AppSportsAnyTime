@@ -13,12 +13,29 @@
         <item>Society</item>
         <item>Futsal</item>
     </string-array>
-    <string-array name="posicoes">
+    <string-array name="posicoesKey">
+        <item>gol</item>
+        <item>zag</item>
+        <item>ld</item>
+        <item>le</item>
+        <item>vol</item>
+        <item>mei</item>
+        <item>ata</item>
+        <item>fixo</item>
+        <item>ala</item>
+        <item>pivo</item>
+    </string-array>
+    <string-array name="posicoesValue">
         <item>Goleiro</item>
         <item>Zagueiro</item>
-        <item>Lateral</item>
-        <item>Meia</item>
+        <item>Lateral-direito</item>
+        <item>Lateral-esquerdo</item>
+        <item>Volante</item>
+        <item>Meio-campo</item>
         <item>Atacante</item>
+        <item>Fixo</item>
+        <item>Ala</item>
+        <item>Pivô</item>
     </string-array>
 
     <string name="title_main_activity">Login</string>
@@ -29,10 +46,7 @@
     <string name="title_activity_maps">Map</string>
     <string name="title_activity_confirmacao">Confirmação</string>
     <string name="title_activity_review">Avaliação</string>
-
-    <string name="title_section1">Section 1</string>
-    <string name="title_section2">Section 2</string>
-    <string name="title_section3">Section 3</string>
+    <string name="title_activity_cadastro_jogo">Novo Jogo</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -67,4 +81,8 @@
     <string name="lbl_e_mail_time">E-mail</string>
     <string name="lbl_senha_time">Senha</string>
     <string name="lbl_telefone_time">Telefone</string>
+
+    <string name="novo_jogo_data">Data</string>
+    <string name="novo_jogo_posicoes_disponiveis">Posições</string>
+    <string name="novo_jogo_btn_salvar">Salvar</string>
 </resources>

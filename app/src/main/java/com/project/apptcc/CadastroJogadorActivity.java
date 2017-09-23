@@ -47,7 +47,7 @@ public class CadastroJogadorActivity extends Activity {
 
     private void initSpinnerPosicoes() {
         Spinner spPosicoes = (Spinner) findViewById(R.id.spnPosicao);
-        ArrayAdapter adapterPosicoes = ArrayAdapter.createFromResource(this,R.array.posicoes,android.R.layout.simple_spinner_item);
+        ArrayAdapter adapterPosicoes = ArrayAdapter.createFromResource(this, R.array.posicoesValue, android.R.layout.simple_spinner_item);
         spPosicoes.setAdapter(adapterPosicoes);
     }
 

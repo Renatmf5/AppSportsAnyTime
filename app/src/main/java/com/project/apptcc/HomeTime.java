@@ -97,4 +97,10 @@ public class HomeTime extends AppCompatActivity implements OnMapReadyCallback {
                 .title("FIAP"));
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(fiap));
     }
+
+    public void abrirNovoJogo(View view) {
+        Intent i = new Intent(HomeTime.this, CadastroJogo.class);
+        i.putExtra("Time", this.time);
+        startActivity(i);
+    }
 }

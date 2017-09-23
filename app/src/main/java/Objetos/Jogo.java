@@ -41,6 +41,8 @@ public class Jogo implements Serializable {
         }
     }
 
+    public Jogo() {}
+
     public int getId() {
         return id;
     }
