@@ -3,181 +3,185 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:weightSum="1"
     android:background="#8bc34a">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp" >
-        <TextView
-            android:text="@string/cadastro_time_title"
-            android:textAlignment="center"
+        android:layout_height="wrap_content">
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#FFF"
-            android:textStyle="bold"
-            android:textSize="26sp"
-            android:layout_marginBottom="20dp" />
+            android:orientation="vertical"
+            android:padding="16dp" >
+            <TextView
+                android:text="@string/cadastro_time_title"
+                android:textAlignment="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#FFF"
+                android:textStyle="bold"
+                android:textSize="26sp"
+                android:layout_marginBottom="20dp" />
 
-        <!-- Nome -->
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/lbl_team_nome"
-            android:textAlignment="center"
-            android:textColor="#FFF"
-            android:textStyle="bold"
-            android:textSize="16sp" />
-        <EditText
-            android:id="@+id/edtNomeTime"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:textAlignment="center"
-            android:inputType="text"
-            android:textColor="#FFF"
-            android:textStyle="bold"
-            android:textSize="16sp" />
+            <!-- Nome -->
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/lbl_team_nome"
+                android:textAlignment="center"
+                android:textColor="#FFF"
+                android:textStyle="bold"
+                android:textSize="16sp" />
+            <EditText
+                android:id="@+id/edtNomeTime"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:textAlignment="center"
+                android:inputType="text"
+                android:textColor="#FFF"
+                android:textStyle="bold"
+                android:textSize="16sp" />
 
-        <!-- Telefone -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/lbl_telefone_time"
-            android:textAlignment="center"
-            android:textColor="#FFF"
-            android:textStyle="bold"
-            android:textSize="16sp" />
-        <EditText
-            android:id="@+id/edtTelefoneTime"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:textAlignment="center"
-            android:inputType="phone"
-            android:textColor="#FFF"
-            android:textStyle="bold"
-            android:textSize="16sp" />
+            <!-- Telefone -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/lbl_telefone_time"
+                android:textAlignment="center"
+                android:textColor="#FFF"
+                android:textStyle="bold"
+                android:textSize="16sp" />
+            <EditText
+                android:id="@+id/edtTelefoneTime"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:textAlignment="center"
+                android:inputType="phone"
+                android:textColor="#FFF"
+                android:textStyle="bold"
+                android:textSize="16sp" />
 
-        <!-- Email -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/lbl_e_mail_time"
-            android:textAlignment="center"
-            android:textColor="#FFF"
-            android:textStyle="bold"
-            android:textSize="16sp" />
-        <EditText
-            android:id="@+id/edtEmailTime"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:textAlignment="center"
-            android:inputType="textEmailAddress"
-            android:textColor="#FFF"
-            android:textStyle="bold"
-            android:textSize="16sp" />
+            <!-- Email -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/lbl_e_mail_time"
+                android:textAlignment="center"
+                android:textColor="#FFF"
+                android:textStyle="bold"
+                android:textSize="16sp" />
+            <EditText
+                android:id="@+id/edtEmailTime"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:textAlignment="center"
+                android:inputType="textEmailAddress"
+                android:textColor="#FFF"
+                android:textStyle="bold"
+                android:textSize="16sp" />
 
-        <!-- Senha -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/lbl_senha_time"
-            android:textAlignment="center"
-            android:textColor="#FFF"
-            android:textStyle="bold"
-            android:textSize="16sp" />
-        <EditText
-            android:id="@+id/edtSenhaTime"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:textAlignment="center"
-            android:inputType="textPassword"
-            android:textColor="#FFF"
-            android:textStyle="bold"
-            android:textSize="16sp" />
+            <!-- Senha -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/lbl_senha_time"
+                android:textAlignment="center"
+                android:textColor="#FFF"
+                android:textStyle="bold"
+                android:textSize="16sp" />
+            <EditText
+                android:id="@+id/edtSenhaTime"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:textAlignment="center"
+                android:inputType="textPassword"
+                android:textColor="#FFF"
+                android:textStyle="bold"
+                android:textSize="16sp" />
 
-        <!-- Tipo de jogo -->
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/lbl_team_tipo_de_jogo"
-            android:textAlignment="center"
-            android:textColor="#FFF"
-            android:textStyle="bold"
-            android:textSize="16sp" />
-        <Spinner
-            android:id="@+id/spnTipoJogo"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:textAlignment="center"
-            android:inputType="text"
-            android:textColor="#FFF"
-            android:textStyle="bold"
-            android:textSize="16sp"
-            android:layout_marginTop="5sp"
-            android:layout_marginBottom="5sp" />
+            <!-- Tipo de jogo -->
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/lbl_team_tipo_de_jogo"
+                android:textAlignment="center"
+                android:textColor="#FFF"
+                android:textStyle="bold"
+                android:textSize="16sp" />
+            <Spinner
+                android:id="@+id/spnTipoJogo"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:textAlignment="center"
+                android:inputType="text"
+                android:textColor="#FFF"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_marginTop="5sp"
+                android:layout_marginBottom="5sp" />
 
-        <!-- Endereço -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/lbl_team_endereco"
-            android:textAlignment="center"
-            android:textColor="#FFF"
-            android:textStyle="bold"
-            android:textSize="16sp" />
-        <EditText
-            android:id="@+id/edtEnderecoTime"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:textAlignment="center"
-            android:inputType="text"
-            android:textColor="#FFF"
-            android:textStyle="bold"
-            android:textSize="16sp" />
+            <!-- Endereço -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/lbl_team_endereco"
+                android:textAlignment="center"
+                android:textColor="#FFF"
+                android:textStyle="bold"
+                android:textSize="16sp" />
+            <EditText
+                android:id="@+id/edtEnderecoTime"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:textAlignment="center"
+                android:inputType="text"
+                android:textColor="#FFF"
+                android:textStyle="bold"
+                android:textSize="16sp" />
 
-        <!-- Cidade -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/lbl_team_cidade"
-            android:textAlignment="center"
-            android:textColor="#FFF"
-            android:textStyle="bold"
-            android:textSize="16sp" />
-        <EditText
-            android:id="@+id/edtCidadeTime"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:textAlignment="center"
-            android:inputType="text"
-            android:textColor="#FFF"
-            android:textStyle="bold"
-            android:textSize="16sp" />
+            <!-- Cidade -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/lbl_team_cidade"
+                android:textAlignment="center"
+                android:textColor="#FFF"
+                android:textStyle="bold"
+                android:textSize="16sp" />
+            <EditText
+                android:id="@+id/edtCidadeTime"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:textAlignment="center"
+                android:inputType="text"
+                android:textColor="#FFF"
+                android:textStyle="bold"
+                android:textSize="16sp" />
 
-        <!-- Estado -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/lbl_team_estado"
-            android:textAlignment="center"
-            android:textColor="#FFF"
-            android:textStyle="bold"
-            android:textSize="16sp" />
-        <EditText
-            android:id="@+id/edtEstadoTime"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:textAlignment="center"
-            android:inputType="text"
-            android:textColor="#FFF"
-            android:textStyle="bold"
-            android:textSize="16sp" />
-    </LinearLayout>
+            <!-- Estado -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/lbl_team_estado"
+                android:textAlignment="center"
+                android:textColor="#FFF"
+                android:textStyle="bold"
+                android:textSize="16sp" />
+            <EditText
+                android:id="@+id/edtEstadoTime"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:textAlignment="center"
+                android:inputType="text"
+                android:textColor="#FFF"
+                android:textStyle="bold"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </ScrollView>
 
     <RelativeLayout
         android:layout_marginTop="20sp"

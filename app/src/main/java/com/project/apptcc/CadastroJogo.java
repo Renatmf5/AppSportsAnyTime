@@ -65,6 +65,7 @@ public class CadastroJogo extends Activity {
         this.jogo = this.makeJogo();
         Services.Endereco.Criador.execute(jogo.getEndereco())
                 .done(this.buildCriadorEnderecoDoneCallback())
+                .fail(this.buildCriadorEnderecoFailCallback());
     }
 
     private Jogo makeJogo() {
@@ -102,6 +103,19 @@ public class CadastroJogo extends Activity {
                 Services.Jogo.Criador.execute(jogo)
                         .done(activity.buildCriadorJogoDoneCallback())
                         .fail(activity.buildCriadorJogoFailCallback());
+            }
+        };
+    }
+
+    private FailCallback buildCriadorEnderecoFailCallback() {
+        return new FailCallback() {
+            @Override
+            public void onFail(Object result) {
+                Toast.makeText(
+                        activity,
+                        "Ocorreu um erro ao salvar o seu registro. Tente novamente, por favor",
+                        Toast.LENGTH_SHORT
+                ).show();
             }
         };
     }
