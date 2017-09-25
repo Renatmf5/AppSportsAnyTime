@@ -39,8 +39,12 @@ public class CadastroTimeActivity extends Activity {
     }
 
     private void initSpinnerTiposDeJogo() {
-        Spinner spTipos = (Spinner) findViewById(R.id.spnTipoJogo);
-        ArrayAdapter adapterTipos = ArrayAdapter.createFromResource(this,R.array.tipos,android.R.layout.simple_spinner_item);
+        Spinner spTipos = (Spinner) findViewById(R.id.spnTipoJogoTime);
+        ArrayAdapter adapterTipos = ArrayAdapter.createFromResource(
+                this,
+                R.array.tiposValue,
+                android.R.layout.simple_spinner_item
+        );
         spTipos.setAdapter(adapterTipos);
     }
 
@@ -51,8 +55,8 @@ public class CadastroTimeActivity extends Activity {
 
         DeferredManager deferredManager = new DefaultDeferredManager();
         deferredManager.when(
-                Services.Usuario.Criador.execute(time.getUsuario()),
-                Services.Endereco.Criador.execute(time.getEndereco())
+                Services.Usuario.Criador.execute(this, time.getUsuario()),
+                Services.Endereco.Criador.execute(this, time.getEndereco())
         ).done(
                 this.buildCriadorUsuarioEEnderecoDoneCallback(time)
         ).fail(
@@ -71,13 +75,9 @@ public class CadastroTimeActivity extends Activity {
     }
 
     private String buildTipoDeJogoAsString() {
-        Spinner spn = (Spinner) findViewById(R.id.spnTipoJogo);
-        return spn.getSelectedItem().toString();
-    }
-
-    private String buildPosicaoAsString() {
-        Spinner spn = (Spinner) findViewById(R.id.spnPosicao);
-        return spn.getSelectedItem().toString();
+        Spinner spn = (Spinner) findViewById(R.id.spnTipoJogoTime);
+        String[] keys = getResources().getStringArray(R.array.tiposKey);
+        return keys[spn.getSelectedItemPosition()];
     }
 
     private Endereco makeEndereco() {
@@ -127,7 +127,7 @@ public class CadastroTimeActivity extends Activity {
                         activity,
                         "Ocorreu um erro ao salvar o seu registro. Tente novamente, por favor",
                         Toast.LENGTH_SHORT
-                );
+                ).show();
             }
         };
     }
@@ -137,8 +137,6 @@ public class CadastroTimeActivity extends Activity {
             @Override
             public void onDone(Object result) {
                 Intent intent = new Intent(activity, HomeTime.class);
-                Bundle params = new Bundle();
-                intent.putExtras(params);
                 intent.putExtra("Time", time);
                 startActivity(intent);
             }

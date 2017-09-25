@@ -41,7 +41,7 @@ public class CadastroJogadorActivity extends Activity {
 
     private void initSpinnerTiposDeJogo() {
         Spinner spTipos = (Spinner) findViewById(R.id.spnTipoJogo);
-        ArrayAdapter adapterTipos = ArrayAdapter.createFromResource(this,R.array.tipos,android.R.layout.simple_spinner_item);
+        ArrayAdapter adapterTipos = ArrayAdapter.createFromResource(this,R.array.tiposValue,android.R.layout.simple_spinner_item);
         spTipos.setAdapter(adapterTipos);
     }
 
@@ -58,8 +58,8 @@ public class CadastroJogadorActivity extends Activity {
 
         DeferredManager deferredManager = new DefaultDeferredManager();
         deferredManager.when(
-                Services.Usuario.Criador.execute(jogador.getUsuario()),
-                Services.Endereco.Criador.execute(jogador.getEndereco())
+                Services.Usuario.Criador.execute(this, jogador.getUsuario()),
+                Services.Endereco.Criador.execute(this, jogador.getEndereco())
         ).done(
                 this.buildCriadorUsuarioEEnderecoDoneCallback(jogador)
         ).fail(
@@ -81,12 +81,14 @@ public class CadastroJogadorActivity extends Activity {
 
     private String buildTipoDeJogoAsString() {
         Spinner spn = (Spinner) findViewById(R.id.spnTipoJogo);
-        return spn.getSelectedItem().toString();
+        String[] keys = getResources().getStringArray(R.array.tiposKey);
+        return keys[spn.getSelectedItemPosition()];
     }
 
     private String buildPosicaoAsString() {
         Spinner spn = (Spinner) findViewById(R.id.spnPosicao);
-        return spn.getSelectedItem().toString();
+        String[] keys = getResources().getStringArray(R.array.posicoesKey);
+        return keys[spn.getSelectedItemPosition()];
     }
 
     private Endereco makeEndereco() {
@@ -121,7 +123,7 @@ public class CadastroJogadorActivity extends Activity {
                     e.printStackTrace();
                 }
 
-                Services.Jogador.Criador.execute(jogador)
+                Services.Jogador.Criador.execute(activity, jogador)
                         .done(activity.buildCriadorJogadorDoneCallback(jogador))
                         .fail(activity.buildCriadorJogadorFailCallback(jogador));
             }
@@ -136,7 +138,7 @@ public class CadastroJogadorActivity extends Activity {
                         activity,
                         "Ocorreu um erro ao salvar o seu registro. Tente novamente, por favor",
                         Toast.LENGTH_SHORT
-                );
+                ).show();
             }
         };
     }
@@ -146,8 +148,6 @@ public class CadastroJogadorActivity extends Activity {
             @Override
             public void onDone(Object result) {
                 Intent intent = new Intent(activity, HomeJogador.class);
-                Bundle params = new Bundle();
-                intent.putExtras(params);
                 intent.putExtra("Jogador", jogador);
                 startActivity(intent);
             }
@@ -162,7 +162,7 @@ public class CadastroJogadorActivity extends Activity {
                         activity,
                         "Ocorreu um erro ao salvar o seu registro. Tente novamente, por favor",
                         Toast.LENGTH_SHORT
-                );
+                ).show();
             }
         };
     }

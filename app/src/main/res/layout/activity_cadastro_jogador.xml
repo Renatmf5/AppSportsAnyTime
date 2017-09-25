@@ -200,25 +200,18 @@
                 android:textColor="#FFF"
                 android:textStyle="bold"
                 android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/btnCadastrarTime"
+                android:textAlignment="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Entrar"
+                android:textColor="#FFF"
+                android:textSize="16sp"
+                android:background="#0a8f08"
+                android:onClick="registrar"/>
         </LinearLayout>
     </ScrollView>
-
-    <RelativeLayout
-        android:layout_marginTop="20sp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="#2baf2b">
-        <Button
-            android:id="@+id/btnCadastrarTime"
-            android:textAlignment="center"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Entrar"
-            android:textColor="#FFF"
-            android:textSize="16sp"
-            android:background="#0a8f08"
-            android:onClick="registrar"/>
-    </RelativeLayout>
 
 </RelativeLayout>

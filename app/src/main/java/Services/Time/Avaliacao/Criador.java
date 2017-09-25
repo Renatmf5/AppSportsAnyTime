@@ -1,5 +1,7 @@
 package Services.Time.Avaliacao;
 
+import android.app.Activity;
+
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
@@ -17,7 +19,7 @@ import cz.msebera.android.httpclient.Header;
 
 public class Criador {
 
-    public static Promise execute (Time time, Review review) {
+    public static Promise execute (Activity activity, Time time, Review review) {
         final Deferred deferred = new DeferredObject();
         final Promise promise = deferred.promise();
 
@@ -25,7 +27,7 @@ public class Criador {
         params.put("grade", review.getGrade());
         params.add("description", review.getDescription());
 
-        HttpService.post("/teams/"+time.getId()+"/reviews", params, new JsonHttpResponseHandler() {
+        HttpService.getInstance().post(activity, "/api/teams/"+time.getId()+"/reviews", params, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 deferred.resolve(response);

@@ -1,5 +1,8 @@
 package Services.Jogo;
 
+import android.app.Activity;
+import android.content.Context;
+
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
@@ -10,45 +13,27 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
+
 import Objetos.Jogo;
 import Services.HttpService;
 import cz.msebera.android.httpclient.Header;
 
 public class Criador {
 
-    public static Promise execute (Jogo jogo) {
+    public static Promise execute (Context context, Jogo jogo) {
         final Deferred deferred = new DeferredObject();
         final Promise promise = deferred.promise();
 
         RequestParams params = new RequestParams();
         params.add("team_id", jogo.getTime().getId());
-        params.add("dated_at", jogo.getDatadoEm().toString());
+        params.add("dated_at", jogo.getDatadoEm().getYear() + "-" + jogo.getDatadoEm().getMonth() + "-" + jogo.getDatadoEm().getDay());
         params.add("address_id", jogo.getEndereco().getId());
 
-        HttpService.post("/games", params, new JsonHttpResponseHandler() {
+        HttpService.getInstance().post(context, "/api/games", params, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 deferred.resolve(response);
-            }
-
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
-                try {
-                    JSONObject json = (JSONObject) response.get(0);
-                    deferred.resolve(json);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, String responseString) {
-                try {
-                    JSONObject json = new JSONObject(responseString);
-                    deferred.resolve(json);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
             }
 
             @Override

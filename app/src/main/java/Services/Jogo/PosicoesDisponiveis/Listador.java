@@ -18,8 +18,8 @@ public class Listador {
         final Deferred deferred = new DeferredObject();
         final Promise promise = deferred.promise();
 
-        HttpService.get(
-                "/games/" + jogo.getId() + "/available-positions",
+        HttpService.getInstance().get(
+                "/api/games/" + jogo.getId() + "/available-positions",
                 null,
                 new JsonHttpResponseHandler() {
                     @Override

@@ -1,5 +1,7 @@
 package Objetos;
 
+import com.project.apptcc.R;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -146,5 +148,10 @@ public class Jogador implements Serializable {
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+    }
+
+    @Override
+    public String toString() {
+        return nome + " - " + posicao;
     }
 }

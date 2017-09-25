@@ -92,4 +92,10 @@ public class Jogo implements Serializable {
         return stringDate;
 
     }
+
+    @Override
+    public String toString() {
+        return "Jogo " + this.getTime().getNome() +
+                ", dia " + this.getDatadoEm().toString();
+    }
 }

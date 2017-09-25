@@ -1,5 +1,8 @@
 package Services.Jogo.PosicoesDisponiveis;
 
+import android.app.Activity;
+import android.content.Context;
+
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
@@ -15,40 +18,21 @@ import Services.HttpService;
 import cz.msebera.android.httpclient.Header;
 
 public class Criador {
-    public static Promise execute (PosicaoDisponivelJogo posicao) {
+    public static Promise execute (Context context, PosicaoDisponivelJogo posicao) {
         final Deferred deferred = new DeferredObject();
         final Promise promise = deferred.promise();
 
         RequestParams params = new RequestParams();
         params.add("position", posicao.getPosicao());
 
-        HttpService.post(
-                "/games/" + posicao.getJogo().getId() + "/available-positions",
+        HttpService.getInstance().post(
+                context,
+                "/api/games/" + posicao.getJogo().getId() + "/available-positions",
                 params,
                 new JsonHttpResponseHandler() {
                     @Override
                     public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                         deferred.resolve(response);
-                    }
-
-                    @Override
-                    public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
-                        try {
-                            JSONObject json = (JSONObject) response.get(0);
-                            deferred.resolve(json);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-
-                    @Override
-                    public void onSuccess(int statusCode, Header[] headers, String responseString) {
-                        try {
-                            JSONObject json = new JSONObject(responseString);
-                            deferred.resolve(json);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
                     }
 
                     @Override

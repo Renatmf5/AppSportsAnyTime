@@ -26,7 +26,7 @@
 
     <RatingBar
         android:id="@+id/ratingBarReview"
-        android:layout_width="250sp"
+        android:layout_width="240sp"
         android:layout_centerHorizontal="true"
         android:layout_height="wrap_content"
         android:stepSize="1"

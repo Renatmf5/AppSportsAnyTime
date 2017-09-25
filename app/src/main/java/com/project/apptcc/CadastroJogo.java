@@ -63,16 +63,18 @@ public class CadastroJogo extends Activity {
     public void salvar(View view) {
         this.endereco = this.makeEndereco();
         this.jogo = this.makeJogo();
-        Services.Endereco.Criador.execute(jogo.getEndereco())
+        Services.Endereco.Criador.execute(this, jogo.getEndereco())
                 .done(this.buildCriadorEnderecoDoneCallback())
                 .fail(this.buildCriadorEnderecoFailCallback());
     }
 
     private Jogo makeJogo() {
+        String dataStr = ((EditText)findViewById(R.id.edtDataJogo)).getText().toString();
+        String[] dataArr = dataStr.split("/");
+        Date data = new Date(Integer.parseInt(dataArr[2]), Integer.parseInt(dataArr[1]), Integer.parseInt(dataArr[0]));
+
         Jogo jogo = new Jogo();
-        jogo.setDatadoEm(
-                new Date(((EditText)findViewById(R.id.edtDataJogo)).getText().toString())
-        );
+        jogo.setDatadoEm(data);
         jogo.setTime(this.time);
         jogo.setEndereco(this.endereco);
 
@@ -100,7 +102,7 @@ public class CadastroJogo extends Activity {
                     e.printStackTrace();
                 }
 
-                Services.Jogo.Criador.execute(jogo)
+                Services.Jogo.Criador.execute(activity, jogo)
                         .done(activity.buildCriadorJogoDoneCallback())
                         .fail(activity.buildCriadorJogoFailCallback());
             }
@@ -124,7 +126,13 @@ public class CadastroJogo extends Activity {
         return new DoneCallback() {
             @Override
             public void onDone(Object result) {
-                activity.salvarPosicoes();
+                try {
+                    JSONObject json = (JSONObject)result;
+                    activity.jogo.setId(json.getInt("id"));
+                    activity.salvarPosicoes();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
 
                 Intent i = new Intent(activity, HomeTime.class);
                 startActivity(i);
@@ -149,7 +157,7 @@ public class CadastroJogo extends Activity {
         String[] keys = getResources().getStringArray(R.array.posicoesKey);
         for (String key : keys) {
             Services.Jogo.PosicoesDisponiveis.Criador.execute(
-                    new PosicaoDisponivelJogo(key)
+                    this, new PosicaoDisponivelJogo(key)
             ).done(new DoneCallback() {
                 @Override
                 public void onDone(Object result) {

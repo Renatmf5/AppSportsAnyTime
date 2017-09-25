@@ -58,11 +58,11 @@ public class Review extends Activity {
     }
 
     private Promise enviarAvaliacaoTime() {
-        return Services.Time.Avaliacao.Criador.execute(this.time, criarReview());
+        return Services.Time.Avaliacao.Criador.execute(this, this.time, criarReview());
     }
 
     private Promise enviarAvaliacaoJogador() {
-        return Services.Jogador.Avaliacao.Criador.execute(this.jogador, criarReview());
+        return Services.Jogador.Avaliacao.Criador.execute(this, this.jogador, criarReview());
     }
 
     private Objetos.Review criarReview() {

@@ -72,7 +72,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
-        <activity android:name=".DetalhesJogador" />
+        <activity
+            android:name=".DetalhesJogador"
+            android:label="@string/title_activity_detalhes_jogador"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
         <activity
             android:name=".Review"
             android:label="@string/title_activity_review"
@@ -91,7 +98,12 @@
         </activity>
         <activity
             android:name=".CadastroJogo"
-            android:label="@string/title_activity_cadastro_jogo"></activity>
+            android:label="@string/title_activity_cadastro_jogo"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.project.apptcc.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

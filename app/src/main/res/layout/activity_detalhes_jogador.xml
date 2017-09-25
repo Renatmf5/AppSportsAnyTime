@@ -23,7 +23,8 @@
         android:textSize="24sp"
         android:paddingTop="5sp"
         android:paddingBottom="5sp"
-        android:background="#8bc34a" />
+        android:background="#8bc34a"
+        android:textAlignment="center"/>
 
     <TextView
         android:id="@+id/textViewPositionJogador"
@@ -34,7 +35,8 @@
         android:textSize="24sp"
         android:paddingTop="5sp"
         android:paddingBottom="5sp"
-        android:layout_below="@id/textViewNameJogador"/>
+        android:layout_below="@id/textViewNameJogador"
+        android:textAlignment="center"/>
 
     <TextView
         android:id="@+id/textViewTitleAvaliacoes"
@@ -49,7 +51,7 @@
         android:paddingBottom="10sp"/>
 
     <ListView
-        android:id="@+id/listReviews"
+        android:id="@+id/listReviewsJogador"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/textViewTitleAvaliacoes"
@@ -69,7 +71,9 @@
             android:layout_height="wrap_content"
             android:text="@string/detalhes_jogador_joga_pra_gente"
             android:textColor="#FFF"
-            android:background="#2baf2b"/>
+            android:background="#2baf2b"
+            android:textSize="16sp"
+            android:padding="5sp"/>
 
     </RelativeLayout>
 

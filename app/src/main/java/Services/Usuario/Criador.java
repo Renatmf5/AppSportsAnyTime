@@ -1,5 +1,7 @@
 package Services.Usuario;
 
+import android.app.Activity;
+
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
@@ -16,24 +18,14 @@ import cz.msebera.android.httpclient.Header;
 
 public class Criador {
 
-    public static Promise execute(Usuario usuario) {
+    public static Promise execute(Activity activity, Usuario usuario) {
         final Deferred deferred = new DeferredObject();
         Promise promise = deferred.promise();
 
-        HttpService.post("/users", Criador.makeParams(usuario), new JsonHttpResponseHandler() {
+        HttpService.getInstance().post(activity, "/api/users", Criador.makeParams(usuario), new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 deferred.resolve(response);
-            }
-
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONArray timeline) {
-                try {
-                    JSONObject json = (JSONObject) timeline.get(0);
-                    deferred.resolve(json);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
             }
 
             @Override

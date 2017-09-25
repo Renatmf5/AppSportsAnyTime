@@ -1,5 +1,7 @@
 package Services.Endereco;
 
+import android.app.Activity;
+
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
@@ -16,11 +18,11 @@ import cz.msebera.android.httpclient.Header;
 
 public class Criador {
 
-    public static Promise execute(Endereco endereco) {
+    public static Promise execute(Activity activity, Endereco endereco) {
         final Deferred deferred = new DeferredObject();
         Promise promise = deferred.promise();
 
-        HttpService.post("/addresses", Criador.makeParams(endereco), new JsonHttpResponseHandler() {
+        HttpService.getInstance().post(activity, "/api/addresses", Criador.makeParams(endereco), new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 deferred.resolve(response);

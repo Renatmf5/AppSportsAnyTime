@@ -1,5 +1,7 @@
 package Services.Jogador;
 
+import android.app.Activity;
+
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
@@ -16,7 +18,7 @@ import cz.msebera.android.httpclient.Header;
 
 public class Criador {
 
-    public static Promise execute (Jogador jogador) {
+    public static Promise execute (Activity activity, Jogador jogador) {
         final Deferred deferred = new DeferredObject();
         final Promise promise = deferred.promise();
 
@@ -28,7 +30,7 @@ public class Criador {
         params.add("user_id", jogador.getUsuario().getId());
         params.add("address_id", jogador.getEndereco().getId());
 
-        HttpService.post("/players", params, new JsonHttpResponseHandler() {
+        HttpService.getInstance().post(activity, "/api/players", params, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 deferred.resolve(response);

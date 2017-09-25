@@ -1,5 +1,7 @@
 package Services.Jogador;
 
+import android.content.Context;
+
 import com.loopj.android.http.JsonHttpResponseHandler;
 
 import org.jdeferred.Deferred;
@@ -14,34 +16,14 @@ import cz.msebera.android.httpclient.Header;
 
 public class Listador {
 
-    public static Promise execute() {
+    public static Promise execute(Context context) {
         final Deferred deferred = new DeferredObject();
         final Promise promise = deferred.promise();
 
-        HttpService.get("/players", null, new JsonHttpResponseHandler() {
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                deferred.resolve(response);
-            }
-
+        HttpService.getInstance().get(context, "/api/players", null, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
-                try {
-                    JSONObject json = (JSONObject) response.get(0);
-                    deferred.resolve(json);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, String responseString) {
-                try {
-                    JSONObject json = new JSONObject(responseString);
-                    deferred.resolve(json);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+                deferred.resolve(response);
             }
 
             @Override
