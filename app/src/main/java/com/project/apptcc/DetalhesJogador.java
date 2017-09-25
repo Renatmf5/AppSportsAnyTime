@@ -36,7 +36,7 @@ public class DetalhesJogador extends AppCompatActivity {
 
         this.jogador = (Jogador) getIntent().getSerializableExtra("Jogador");
         ((TextView)findViewById(R.id.textViewNameJogador)).setText(jogador.getNome());
-        ((TextView)findViewById(R.id.textViewPositionJogador)).setText(jogador.getPosicao());
+        ((TextView)findViewById(R.id.textViewPositionJogador)).setText(jogador.getPosicaoValueStr());
 
         this.initListReviewsJogador();
     }

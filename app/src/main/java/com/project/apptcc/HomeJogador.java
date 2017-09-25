@@ -40,6 +40,7 @@ public class HomeJogador extends AppCompatActivity implements OnMapReadyCallback
         Log.d(this.getLocalClassName(), this.jogador.getId());
 
         this.initJogosList();
+
         /*this.initMap();*/
     }
 

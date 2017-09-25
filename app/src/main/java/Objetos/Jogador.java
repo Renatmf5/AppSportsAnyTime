@@ -1,5 +1,8 @@
 package Objetos;
 
+import android.app.Application;
+import android.content.res.Resources;
+
 import com.project.apptcc.R;
 
 import org.json.JSONException;
@@ -152,6 +155,23 @@ public class Jogador implements Serializable {
 
     @Override
     public String toString() {
-        return nome + " - " + posicao;
+        return nome + " - " + this.getPosicaoValueStr();
+    }
+
+    public String getPosicaoValueStr() {
+        switch (this.posicao) {
+            case "gol": return "Goleiro";
+            case "zag": return "Zagueiro";
+            case "ld": return "Lateral-direito";
+            case "le": return "Lateral-esquerdo";
+            case "vol": return "Volante";
+            case "mei": return "Meio-campo";
+            case "ata": return "Atacante";
+            case "fixo": return "Fixo";
+            case "ala": return "Ala";
+            case "pivo": return "Pivô";
+        }
+
+        return null;
     }
 }

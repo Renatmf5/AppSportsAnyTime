@@ -21,10 +21,6 @@ public class Listador {
         final Promise promise = deferred.promise();
 
         HttpService.getInstance().get(context, "/api/games", null, new JsonHttpResponseHandler() {
-            @Override
-            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-                deferred.reject(null);
-            }
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
@@ -32,13 +28,18 @@ public class Listador {
             }
 
             @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                deferred.reject(errorResponse);
+            }
+
+            @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse) {
-                deferred.reject(null);
+                deferred.reject(errorResponse);
             }
 
             @Override
             public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
-                deferred.reject(null);
+                deferred.reject(throwable);
             }
         });
 
