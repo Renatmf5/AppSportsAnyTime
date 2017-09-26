@@ -91,4 +91,5 @@
     <string name="confirmacao_subtitulo">Você receberá um e-mail com a confirmação</string>
     <string name="detalhes_jogo_avaliar">Avaliar</string>
     <string name="detalhes_jogador_avaliar">Avaliar</string>
+    <string name="title_activity_teste_maps">Teste Google Maps</string>
 </resources>

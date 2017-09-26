@@ -2,6 +2,7 @@ package com.project.apptcc;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -14,6 +15,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import org.jdeferred.DoneCallback;
@@ -26,14 +28,17 @@ import java.util.ArrayList;
 
 import Objetos.Jogador;
 import Objetos.Time;
+import Services.Endereco.DescobrirLatLong;
+import Services.Endereco.GeoPoint;
 import Services.Jogador.Listador;
 
-public class HomeTime extends AppCompatActivity implements OnMapReadyCallback {
+public class HomeTime extends FragmentActivity implements OnMapReadyCallback {
     HomeTime context = this;
     Time time;
     ListView listView;
     ArrayList<Jogador> listItems = new ArrayList<Jogador>();
     ArrayAdapter<Jogador> adapter;
+    private GoogleMap mapa;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,9 +46,7 @@ public class HomeTime extends AppCompatActivity implements OnMapReadyCallback {
         setContentView(R.layout.activity_home_time);
 
         this.time = (Time)getIntent().getSerializableExtra("Time");
-
         this.initJogadoresList();
-        /*this.initMap();*/
     }
 
     private void initJogadoresList() {
@@ -65,6 +68,7 @@ public class HomeTime extends AppCompatActivity implements OnMapReadyCallback {
                         context.listItems.add(jogador);
                     }
                     context.adapter.notifyDataSetChanged();
+                    context.initMap();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -98,17 +102,35 @@ public class HomeTime extends AppCompatActivity implements OnMapReadyCallback {
     }
 
     private void initMap() {
-        /*SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.mapView);
-        mapFragment.getMapAsync(this);*/
+        SupportMapFragment mapFragment = (SupportMapFragment)getSupportFragmentManager()
+                .findFragmentById(R.id.mapJogadores);
+        mapFragment.getMapAsync(this);
     }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        /*LatLng fiap = new LatLng(-23.57681, -46.6311684);
-        googleMap.addMarker(new MarkerOptions().position(fiap)
-                .title("FIAP"));
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(fiap));*/
+        this.mapa = googleMap;
+        LatLngBounds.Builder builder = new LatLngBounds.Builder();
+        for (Jogador jogador : this.listItems) {
+            GeoPoint point = DescobrirLatLong.descobrir(
+                    context,
+                    jogador.getEndereco().getAddress()
+                            + ", "
+                            + jogador.getEndereco().getCity()
+                            + ", "
+                            + jogador.getEndereco().getState()
+            );
+            LatLng latLng = new LatLng(point.getLatitude(), point.getLongitude());
+            builder.include(latLng);
+            this.mapa.addMarker(
+                    new MarkerOptions()
+                            .position(latLng)
+                            .title(jogador.getNome())
+            );
+
+            LatLngBounds bounds = builder.build();
+            this.mapa.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, 20));
+        }
     }
 
     public void abrirNovoJogo(View view) {

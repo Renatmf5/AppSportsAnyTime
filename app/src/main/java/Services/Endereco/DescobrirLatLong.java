@@ -24,9 +24,9 @@ public class DescobrirLatLong {
             location.getLongitude();
 
             return new GeoPoint(
-                    (double) (location.getLatitude() * 1E6),
-                    (double) (location.getLongitude() * 1E6));
-        } catch (IOException e) {
+                    (double) (location.getLatitude()),
+                    (double) (location.getLongitude()));
+        } catch (Exception e) {
             e.printStackTrace();
             return null;
         }

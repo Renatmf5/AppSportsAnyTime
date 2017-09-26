@@ -2,6 +2,7 @@ package com.project.apptcc;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -10,10 +11,14 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 import org.jdeferred.DoneCallback;
 import org.jdeferred.FailCallback;
@@ -28,23 +33,20 @@ import Services.Endereco.DescobrirLatLong;
 import Services.Endereco.GeoPoint;
 import Services.Jogo.Listador;
 
-public class HomeJogador extends AppCompatActivity implements OnMapReadyCallback {
-    Jogador jogador;
+public class HomeJogador extends FragmentActivity implements OnMapReadyCallback {
     final HomeJogador context = this;
-    ArrayList<Jogo> listItems=new ArrayList<Jogo>();
-    ArrayAdapter<Jogo> adapter;
+    private Jogador jogador;
+    private ArrayList<Jogo> listItems=new ArrayList<Jogo>();
+    private ArrayAdapter<Jogo> adapter;
+    private GoogleMap mapa;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_home_jogador);
 
         this.jogador = (Jogador)getIntent().getSerializableExtra("Jogador");
-        Log.d(this.getLocalClassName(), this.jogador.getId());
-
         this.initJogosList();
-        //this.initMap();
     }
 
     private void initJogosList() {
@@ -65,20 +67,9 @@ public class HomeJogador extends AppCompatActivity implements OnMapReadyCallback
                             for (int i = 0; i < data.length(); i++) {
                                 Jogo jogo = new Jogo(data.getJSONObject(i));
                                 context.listItems.add(jogo);
-
-                                /*GeoPoint point = DescobrirLatLong.descobrir(
-                                        context,
-                                        jogo.getEndereco().getAddress()
-                                        + ", "
-                                        + jogo.getEndereco().getCity()
-                                        + ", "
-                                        + jogo.getEndereco().getState()
-                                );
-                                googleMap.addMarker(new MarkerOptions()
-                                        .position(new LatLng(point.getLatitude(), point.getLongitude()))
-                                        .title(jogo.getTime().getNome()));*/
                             }
                             context.adapter.notifyDataSetChanged();
+                            context.initMap();
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -113,13 +104,36 @@ public class HomeJogador extends AppCompatActivity implements OnMapReadyCallback
     }
 
     private void initMap() {
-        /*SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+        SupportMapFragment mapFragment = (SupportMapFragment)getSupportFragmentManager()
                 .findFragmentById(R.id.mapJogos);
-        mapFragment.getMapAsync(this);*/
+        mapFragment.getMapAsync(this);
+        //this.mapa = (MapFragment)getFragmentManager().findFragmentById(R.id.mapJogos);
+        //this.mapa.getMapAsync(this);
     }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        //this.initJogosList(googleMap);
+        this.mapa = googleMap;
+        LatLngBounds.Builder builder = new LatLngBounds.Builder();
+        for (Jogo jogo: this.listItems) {
+            GeoPoint point = DescobrirLatLong.descobrir(
+                    context,
+                    jogo.getEndereco().getAddress()
+                            + ", "
+                            + jogo.getEndereco().getCity()
+                            + ", "
+                            + jogo.getEndereco().getState()
+            );
+            LatLng latLng = new LatLng(point.getLatitude(), point.getLongitude());
+            builder.include(latLng);
+            this.mapa.addMarker(
+                    new MarkerOptions()
+                            .position(latLng)
+                            .title(jogo.getTime().getNome())
+            );
+        }
+
+        LatLngBounds bounds = builder.build();
+        this.mapa.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, 20));
     }
 }
