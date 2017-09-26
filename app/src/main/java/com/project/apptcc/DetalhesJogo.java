@@ -106,4 +106,13 @@ public class DetalhesJogo extends FragmentActivity implements OnMapReadyCallback
         i.putExtra("Jogador", this.jogador);
         startActivity(i);
     }
+
+    public void avaliar(View view) {
+        Intent i = new Intent(DetalhesJogo.this, Review.class);
+        i.putExtra("flag", Confirmacao.CONFIRMACAO_QUERO_JOGAR);
+        i.putExtra("Jogo", this.jogo);
+        i.putExtra("TimeAvaliado", this.jogo.getTime());
+        i.putExtra("JogadorAvaliador", this.jogador);
+        startActivity(i);
+    }
 }

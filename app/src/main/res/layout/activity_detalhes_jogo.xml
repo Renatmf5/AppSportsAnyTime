@@ -31,7 +31,7 @@
         android:layout_height="wrap_content"
         android:background="#259b24"
         android:textColor="#FFF"
-        android:textSize="24sp"
+        android:textSize="20sp"
         android:paddingTop="5sp"
         android:paddingBottom="5sp"
         android:layout_below="@id/textViewNameTime"
@@ -51,6 +51,15 @@
         android:background="#2baf2b">
 
         <Button
+            android:id="@+id/btnAvaliar"
+            android:textAlignment="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/detalhes_jogo_avaliar"
+            android:textColor="#FFF"
+            android:background="#2baf2b"
+            android:onClick="avaliar"/>
+        <Button
             android:id="@+id/btnQueroJogar"
             android:textAlignment="center"
             android:layout_width="match_parent"
@@ -58,7 +67,8 @@
             android:text="@string/detalhes_jogo_quero_jogar"
             android:textColor="#FFF"
             android:background="#2baf2b"
-            android:onClick="queroJogar"/>
+            android:onClick="queroJogar"
+            android:layout_below="@id/btnAvaliar"/>
 
     </RelativeLayout>
 

@@ -70,7 +70,7 @@ public class DetalhesJogador extends AppCompatActivity {
                         Review review = new Review(data.getJSONObject(i));
                         context.listItems.add(review);
                     }
-                    //context.adapter.notifyDataSetChanged();
+                    context.adapter.notifyDataSetChanged();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -96,6 +96,14 @@ public class DetalhesJogador extends AppCompatActivity {
         i.putExtra("flag", Confirmacao.CONFIRMACAO_JOGA_PRA_GENTE);
         i.putExtra("Time", this.time);
         i.putExtra("Jogador", this.jogador);
+        startActivity(i);
+    }
+
+    public void avaliar(View view) {
+        Intent i = new Intent(DetalhesJogador.this, com.project.apptcc.Review.class);
+        i.putExtra("flag", Confirmacao.CONFIRMACAO_JOGA_PRA_GENTE);
+        i.putExtra("TimeAvaliador", this.time);
+        i.putExtra("JogadorAvaliado", this.jogador);
         startActivity(i);
     }
 }

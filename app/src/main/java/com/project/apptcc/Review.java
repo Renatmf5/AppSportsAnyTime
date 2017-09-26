@@ -28,12 +28,14 @@ public class Review extends Activity {
         getActionBar().setDisplayHomeAsUpEnabled(true);
 
         this.textViewNome = (TextView)findViewById(R.id.textViewNome);
-        if (getIntent().hasExtra("Jogador")) {
-            this.jogador = (Jogador) getIntent().getSerializableExtra("Jogador");
+        if (getIntent().hasExtra("JogadorAvaliado")) {
+            this.jogador = (Jogador) getIntent().getSerializableExtra("JogadorAvaliado");
+            this.time = (Time) getIntent().getSerializableExtra("TimeAvaliador");
             this.textViewNome.setText(this.jogador.getNome());
         }
-        if (getIntent().hasExtra("Time")) {
-            this.time = (Time) getIntent().getSerializableExtra("Time");
+        if (getIntent().hasExtra("TimeAvaliado")) {
+            this.jogador = (Jogador) getIntent().getSerializableExtra("JogadorAvaliador");
+            this.time = (Time) getIntent().getSerializableExtra("TimeAvaliado");
             this.textViewNome.setText(this.time.getNome());
         }
 
@@ -74,7 +76,9 @@ public class Review extends Activity {
 
     private void redirecionarParaConfirmacao() {
         Intent intent = new Intent(activity, Confirmacao.class);
-        Bundle params = new Bundle();
+        intent.putExtra("flag", getIntent().getIntExtra("flag", 0));
+        intent.putExtra("Jogador", this.jogador);
+        intent.putExtra("Time", this.time);
         startActivity(intent);
     }
 }
