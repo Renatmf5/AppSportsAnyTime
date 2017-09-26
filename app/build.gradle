@@ -10,6 +10,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -26,12 +27,7 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:26.+'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile ("com.google.android.gms:play-services-base:+") {
-        force = true;
-    }
-    compile ("com.google.android.gms:play-services-maps:+") {
-        force = true;
-    }
+    compile 'com.google.android.gms:play-services:11.0.4'
     compile 'com.loopj.android:android-async-http:1.4.9'
     compile 'org.jdeferred:jdeferred-android-aar:1.2.6'
     compile 'com.thomashaertel:multispinner:0.1.1'

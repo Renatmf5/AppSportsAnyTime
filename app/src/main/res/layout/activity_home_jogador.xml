@@ -8,12 +8,12 @@
     android:weightSum="1"
     android:background="@color/defaultBackground">
 
-    <!--<fragment
+    <fragment
         android:id="@+id/mapJogos"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="300sp"
-        tools:context="com.project.apptcc.HomeJogador" />-->
+        tools:context="com.project.apptcc.HomeJogador" />
 
     <ListView
         android:id="@+id/listTimes"

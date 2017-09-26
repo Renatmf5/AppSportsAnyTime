@@ -1,11 +1,13 @@
 package Objetos;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.Serializable;
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Jogo implements Serializable {
@@ -15,6 +17,7 @@ public class Jogo implements Serializable {
     protected Time time;
     protected Endereco endereco;
     protected Lugar lugar;
+    protected ArrayList<PosicaoDisponivelJogo> posicoes = new ArrayList<PosicaoDisponivelJogo>();
 
     public Jogo(JSONObject json) {
         try {
@@ -27,7 +30,7 @@ public class Jogo implements Serializable {
                         "yyyy-mm-dd kk:mm:ss"
                 ));
             }
-            if (json.has("place")) {
+            if (json.has("place") && !json.isNull("place")) {
                 this.setLugar(new Lugar(json.getJSONObject("place")));
             }
             if (json.has("team")) {
@@ -35,6 +38,13 @@ public class Jogo implements Serializable {
             }
             if (json.has("address")) {
                 this.setEndereco(new Endereco(json.getJSONObject("address")));
+            }
+            if (json.has("available_positions")) {
+                JSONArray posicoes = json.getJSONArray("available_positions");
+                for (int i = 0; i < posicoes.length(); i++) {
+                    PosicaoDisponivelJogo pos = new PosicaoDisponivelJogo(posicoes.getJSONObject(i).getString("position"));
+                    this.getPosicoes().add(pos);
+                }
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -93,9 +103,17 @@ public class Jogo implements Serializable {
 
     }
 
+    public ArrayList<PosicaoDisponivelJogo> getPosicoes() {
+        return posicoes;
+    }
+
+    public void setPosicoes(ArrayList<PosicaoDisponivelJogo> posicoes) {
+        this.posicoes = posicoes;
+    }
+
     @Override
     public String toString() {
-        return "Jogo " + this.getTime().getNome() +
-                ", dia " + this.getDatadoEm().toString();
+        return this.getTime().getNome() +
+                ", " + this.getDatadoEm().toLocaleString();
     }
 }
