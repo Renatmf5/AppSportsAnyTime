@@ -73,7 +73,8 @@
             android:textColor="#FFF"
             android:background="#2baf2b"
             android:textSize="24sp"
-            android:padding="5sp"/>
+            android:padding="5sp"
+            android:onClick="jogaPraGente"/>
 
     </RelativeLayout>
 

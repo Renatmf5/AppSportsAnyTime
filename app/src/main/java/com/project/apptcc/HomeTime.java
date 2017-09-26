@@ -91,6 +91,7 @@ public class HomeTime extends AppCompatActivity implements OnMapReadyCallback {
                 Jogador jogador = (Jogador) parent.getItemAtPosition(position);
                 Intent i = new Intent(HomeTime.this, DetalhesJogador.class);
                 i.putExtra("Jogador", jogador);
+                i.putExtra("Time", time);
                 startActivity(i);
             }
         });

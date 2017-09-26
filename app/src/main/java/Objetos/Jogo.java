@@ -9,6 +9,7 @@ import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Locale;
 
 public class Jogo implements Serializable {
 
@@ -113,7 +114,10 @@ public class Jogo implements Serializable {
 
     @Override
     public String toString() {
+        String myFormat = "dd/MM/yyyy";
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+
         return this.getTime().getNome() +
-                ", " + this.getDatadoEm().toLocaleString();
+                ", " + sdf.format(this.getDatadoEm());
     }
 }

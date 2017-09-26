@@ -74,7 +74,7 @@ public class DetalhesJogo extends FragmentActivity implements OnMapReadyCallback
                             }
                         }
 
-                        ((TextView)findViewById(R.id.textViewPositionTime)).setText(posStr);
+                        ((TextView)findViewById(R.id.textViewPositionTime)).setText("Precisam de " + posStr);
                     }
                 })
                 .fail(new FailCallback() {
@@ -101,6 +101,7 @@ public class DetalhesJogo extends FragmentActivity implements OnMapReadyCallback
 
     public void queroJogar(View view) {
         Intent i = new Intent(DetalhesJogo.this, Confirmacao.class);
+        i.putExtra("flag", Confirmacao.CONFIRMACAO_QUERO_JOGAR);
         i.putExtra("Jogo", this.jogo);
         i.putExtra("Jogador", this.jogador);
         startActivity(i);

@@ -45,18 +45,14 @@
 
     <string name="title_main_activity">Login</string>
     <string name="title_bem_vindo_activity">Bem Vindo</string>
-    <string name="title_activity_home_time">Jogadores próximos</string>
-    <string name="title_activity_home_jogador">Jogos próximos</string>
+    <string name="title_activity_home_time">Jogadores próximos a você</string>
+    <string name="title_activity_home_jogador">Jogos próximos a você</string>
     <string name="title_activity_detalhes_jogo">Detalhes do jogo</string>
     <string name="title_activity_maps">Map</string>
     <string name="title_activity_confirmacao">Confirmação</string>
     <string name="title_activity_review">Avaliação</string>
     <string name="title_activity_cadastro_jogo">Novo Jogo</string>
 
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-
-    <string name="action_example">Example action</string>
     <string name="e_mail">E-mail</string>
     <string name="main_title">Entrar</string>
     <string name="main_btn_register_player">Sou jogador</string>
