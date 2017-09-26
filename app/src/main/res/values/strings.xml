@@ -92,4 +92,5 @@
     <string name="novo_jogo_btn_salvar">Salvar</string>
     <string name="home_time_btn_novo_jogo">Novo jogo</string>
     <string name="title_activity_detalhes_jogador">Detalhes</string>
+    <string name="confirmacao_subtitulo">Você receberá um e-mail com a confirmação e os dados de contato com os responsáveis pelo jogo</string>
 </resources>

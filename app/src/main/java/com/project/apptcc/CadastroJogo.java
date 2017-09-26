@@ -1,10 +1,12 @@
 package com.project.apptcc;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -23,7 +25,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.lang.reflect.Array;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 public class CadastroJogo extends Activity {
     private CadastroJogo activity = this;
@@ -32,6 +38,7 @@ public class CadastroJogo extends Activity {
     private Time time;
     private MultiSpinner spinner;
     private ArrayAdapter<String> adapter;
+    private ArrayList<String> selectedPosicoes = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +47,40 @@ public class CadastroJogo extends Activity {
 
         this.time = (Time) getIntent().getSerializableExtra("Time");
         this.initSpinnerPosicoes();
+        this.initDatePicker();
+    }
+
+    private void initDatePicker() {
+        final Calendar myCalendar = Calendar.getInstance();
+        final EditText edtDataJogo = (EditText) findViewById(R.id.edtDataJogo);
+
+        edtDataJogo.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                new DatePickerDialog(CadastroJogo.this,
+                        new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(
+                                    DatePicker view,
+                                    int year, int monthOfYear, int dayOfMonth
+                            ) {
+                                myCalendar.set(Calendar.YEAR, year);
+                                myCalendar.set(Calendar.MONTH, monthOfYear);
+                                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+
+                                String myFormat = "dd/MM/yyyy"; //In which you need put here
+                                SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+
+                                edtDataJogo.setText(sdf.format(myCalendar.getTime()));
+                            }
+                        },
+                        myCalendar.get(Calendar.YEAR),
+                        myCalendar.get(Calendar.MONTH),
+                        myCalendar.get(Calendar.DAY_OF_MONTH)
+                ).show();
+            }
+        });
     }
 
     private void initSpinnerPosicoes() {
@@ -56,7 +97,13 @@ public class CadastroJogo extends Activity {
     private MultiSpinner.MultiSpinnerListener onSelectedListener = new MultiSpinner.MultiSpinnerListener() {
         @Override
         public void onItemsSelected(boolean[] selected) {
-            // do nothing
+            selectedPosicoes.clear();
+            String[] keys = getResources().getStringArray(R.array.posicoesKey);
+            for (int i = 0; i < keys.length; i++) {
+                if (selected[i]) {
+                    selectedPosicoes.add(keys[i]);
+                }
+            }
         }
     };
 
@@ -71,7 +118,10 @@ public class CadastroJogo extends Activity {
     private Jogo makeJogo() {
         String dataStr = ((EditText)findViewById(R.id.edtDataJogo)).getText().toString();
         String[] dataArr = dataStr.split("/");
-        Date data = new Date(Integer.parseInt(dataArr[2]), Integer.parseInt(dataArr[1]), Integer.parseInt(dataArr[0]));
+        Date data = new Date(
+                Integer.parseInt(dataArr[2]) - 1900,
+                Integer.parseInt(dataArr[1]) - 1,
+                Integer.parseInt(dataArr[0]));
 
         Jogo jogo = new Jogo();
         jogo.setDatadoEm(data);
@@ -154,10 +204,9 @@ public class CadastroJogo extends Activity {
     }
 
     private void salvarPosicoes() {
-        String[] keys = getResources().getStringArray(R.array.posicoesKey);
-        for (String key : keys) {
+        for (String key : selectedPosicoes) {
             Services.Jogo.PosicoesDisponiveis.Criador.execute(
-                    this, new PosicaoDisponivelJogo(key)
+                    this, new PosicaoDisponivelJogo(this.jogo, key)
             ).done(new DoneCallback() {
                 @Override
                 public void onDone(Object result) {

@@ -43,11 +43,11 @@ public class HomeJogador extends AppCompatActivity implements OnMapReadyCallback
         this.jogador = (Jogador)getIntent().getSerializableExtra("Jogador");
         Log.d(this.getLocalClassName(), this.jogador.getId());
 
-        //this.initJogosList();
-        this.initMap();
+        this.initJogosList();
+        //this.initMap();
     }
 
-    private void initJogosList(GoogleMap googleMap) {
+    private void initJogosList() {
         ListView listView = (ListView)findViewById(R.id.listTimes);
         context.adapter = new ArrayAdapter<Jogo>(
                 this,
@@ -66,7 +66,7 @@ public class HomeJogador extends AppCompatActivity implements OnMapReadyCallback
                                 Jogo jogo = new Jogo(data.getJSONObject(i));
                                 context.listItems.add(jogo);
 
-                                GeoPoint point = DescobrirLatLong.descobrir(
+                                /*GeoPoint point = DescobrirLatLong.descobrir(
                                         context,
                                         jogo.getEndereco().getAddress()
                                         + ", "
@@ -74,7 +74,7 @@ public class HomeJogador extends AppCompatActivity implements OnMapReadyCallback
                                         + ", "
                                         + jogo.getEndereco().getState()
                                 );
-                                /*googleMap.addMarker(new MarkerOptions()
+                                googleMap.addMarker(new MarkerOptions()
                                         .position(new LatLng(point.getLatitude(), point.getLongitude()))
                                         .title(jogo.getTime().getNome()));*/
                             }
@@ -106,19 +106,20 @@ public class HomeJogador extends AppCompatActivity implements OnMapReadyCallback
                 Jogo jogo = (Jogo)parent.getItemAtPosition(position);
                 Intent i = new Intent(HomeJogador.this, DetalhesJogo.class);
                 i.putExtra("Jogo", jogo);
+                i.putExtra("Jogador", jogador);
                 startActivity(i);
             }
         });
     }
 
     private void initMap() {
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+        /*SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.mapJogos);
-        mapFragment.getMapAsync(this);
+        mapFragment.getMapAsync(this);*/
     }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        this.initJogosList(googleMap);
+        //this.initJogosList(googleMap);
     }
 }

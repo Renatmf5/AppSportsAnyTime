@@ -1,5 +1,7 @@
 package Services.Jogo.PosicoesDisponiveis;
 
+import android.content.Context;
+
 import com.loopj.android.http.JsonHttpResponseHandler;
 
 import org.jdeferred.Deferred;
@@ -14,34 +16,29 @@ import Services.HttpService;
 import cz.msebera.android.httpclient.Header;
 
 public class Listador {
-    public static Promise execute(Jogo jogo) {
+    public static Promise execute(Context context, Jogo jogo) {
         final Deferred deferred = new DeferredObject();
         final Promise promise = deferred.promise();
 
         HttpService.getInstance().get(
+                context,
                 "/api/games/" + jogo.getId() + "/available-positions",
                 null,
                 new JsonHttpResponseHandler() {
+                    @Override
+                    public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+                        deferred.resolve(response);
+                    }
+
                     @Override
                     public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                         deferred.resolve(response);
                     }
 
                     @Override
-                    public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
-                        try {
-                            JSONObject json = (JSONObject) response.get(0);
-                            deferred.resolve(json);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-
-                    @Override
                     public void onSuccess(int statusCode, Header[] headers, String responseString) {
                         try {
-                            JSONObject json = new JSONObject(responseString);
-                            deferred.resolve(json);
+                            deferred.resolve(new JSONObject(responseString));
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -49,17 +46,17 @@ public class Listador {
 
                     @Override
                     public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-                        deferred.reject(null);
+                        deferred.reject(errorResponse);
                     }
 
                     @Override
                     public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse) {
-                        deferred.reject(null);
+                        deferred.reject(errorResponse);
                     }
 
                     @Override
                     public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
-                        deferred.reject(null);
+                        deferred.reject(throwable.getMessage());
                     }
                 });
 

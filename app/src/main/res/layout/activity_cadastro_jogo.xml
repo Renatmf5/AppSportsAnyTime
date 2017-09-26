@@ -37,10 +37,12 @@
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:textAlignment="center"
-            android:inputType="datetime"
+            android:inputType="datetime|date|time"
             android:textColor="#FFF"
             android:textStyle="bold"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:clickable="true"
+            android:editable="false"/>
 
         <!-- Posicoes -->
         <TextView
@@ -55,7 +57,10 @@
         <com.thomashaertel.widget.MultiSpinner
             android:id="@+id/spnPosicoesDisponiveis"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textColor="#FFF"
+            android:textSize="16sp"
+            android:textAlignment="center"/>
 
         <!-- Endereço -->
         <TextView

@@ -22,6 +22,8 @@ import org.json.JSONObject;
 import Objetos.Endereco;
 import Objetos.Jogador;
 import Objetos.Usuario;
+import Services.HttpService;
+import Services.Login.LoginService;
 
 
 public class CadastroJogadorActivity extends Activity {
@@ -147,9 +149,33 @@ public class CadastroJogadorActivity extends Activity {
         return new DoneCallback() {
             @Override
             public void onDone(Object result) {
-                Intent intent = new Intent(activity, HomeJogador.class);
-                intent.putExtra("Jogador", jogador);
-                startActivity(intent);
+                LoginService.execute(usuario.getEmail(), usuario.getPassword())
+                        .done(new DoneCallback() {
+                            @Override
+                            public void onDone(Object result) {
+                                try {
+                                    JSONObject json = (JSONObject)result;
+                                    HttpService.getInstance().setToken(json.getString("access_token"));
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+
+                                Intent intent = new Intent(activity, HomeJogador.class);
+                                intent.putExtra("Jogador", jogador);
+                                startActivity(intent);
+                            }
+                        })
+                        .fail(new FailCallback() {
+                            @Override
+                            public void onFail(Object result) {
+                                Toast.makeText(CadastroJogadorActivity.this,
+                                        "Ocorreu um erro ao autenticar seu usuário após o cadastro. " +
+                                                "Por favor, faça o login para continuar", Toast.LENGTH_SHORT).show();
+
+                                Intent intent = new Intent(CadastroJogadorActivity.this, MainActivity.class);
+                                startActivity(intent);
+                            }
+                        });
             }
         };
     }
