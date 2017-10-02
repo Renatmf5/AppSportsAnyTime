@@ -4,6 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -36,6 +39,7 @@ public class HomeTime extends FragmentActivity implements OnMapReadyCallback {
     HomeTime context = this;
     Time time;
     ListView listView;
+    ArrayList<String> posicoes = new ArrayList<>();
     ArrayList<Jogador> listItems = new ArrayList<Jogador>();
     ArrayAdapter<Jogador> adapter;
     private GoogleMap mapa;
@@ -45,6 +49,9 @@ public class HomeTime extends FragmentActivity implements OnMapReadyCallback {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_time);
 
+        if (getIntent().hasExtra("posicoes")) {
+            this.posicoes = getIntent().getStringArrayListExtra("posicoes");
+        }
         this.time = (Time)getIntent().getSerializableExtra("Time");
         this.initJogadoresList();
     }
@@ -58,7 +65,7 @@ public class HomeTime extends FragmentActivity implements OnMapReadyCallback {
         );
         this.listView.setAdapter(this.adapter);
 
-        Listador.execute(this).done(new DoneCallback() {
+        Listador.execute(this, this.posicoes).done(new DoneCallback() {
             @Override
             public void onDone(Object result) {
                 try {
@@ -120,21 +127,49 @@ public class HomeTime extends FragmentActivity implements OnMapReadyCallback {
                             + ", "
                             + jogador.getEndereco().getState()
             );
-            LatLng latLng = new LatLng(point.getLatitude(), point.getLongitude());
-            builder.include(latLng);
-            this.mapa.addMarker(
-                    new MarkerOptions()
-                            .position(latLng)
-                            .title(jogador.getNome())
-            );
+            if (point != null) {
+                LatLng latLng = new LatLng(point.getLatitude(), point.getLongitude());
+                builder.include(latLng);
+                this.mapa.addMarker(
+                        new MarkerOptions()
+                                .position(latLng)
+                                .title(jogador.getNome())
+                );
 
-            LatLngBounds bounds = builder.build();
-            this.mapa.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, 20));
+                LatLngBounds bounds = builder.build();
+                this.mapa.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, 20));
+            }
         }
     }
 
     public void abrirNovoJogo(View view) {
         Intent i = new Intent(HomeTime.this, CadastroJogo.class);
+        i.putExtra("Time", this.time);
+        startActivity(i);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_home_time, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.menu_home_time_menu_filtrar_posicao:
+                filtrarPosicao();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void filtrarPosicao() {
+        Intent i = new Intent(HomeTime.this, FiltroPosicao.class);
+        i.putExtra("goto", FiltroPosicao.GOTO_HOME_TIME);
         i.putExtra("Time", this.time);
         startActivity(i);
     }

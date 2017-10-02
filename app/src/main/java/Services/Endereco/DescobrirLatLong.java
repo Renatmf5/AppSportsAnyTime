@@ -16,7 +16,7 @@ public class DescobrirLatLong {
 
         try {
             address = coder.getFromLocationName(strEndereco,5);
-            if (address==null) {
+            if (address == null) {
                 return null;
             }
             Address location=address.get(0);

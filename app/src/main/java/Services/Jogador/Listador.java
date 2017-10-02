@@ -3,6 +3,7 @@ package Services.Jogador;
 import android.content.Context;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 
 import org.jdeferred.Deferred;
 import org.jdeferred.Promise;
@@ -11,14 +12,22 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 import Services.HttpService;
 import cz.msebera.android.httpclient.Header;
 
 public class Listador {
 
-    public static Promise execute(Context context) {
+    public static Promise execute(Context context, ArrayList<String> posicoes) {
         final Deferred deferred = new DeferredObject();
         final Promise promise = deferred.promise();
+        RequestParams params = new RequestParams();
+        if (posicoes != null) {
+            for (String posicao : posicoes) {
+                params.add("posicoes[]", posicao);
+            }
+        }
 
         HttpService.getInstance().get(context, "/api/players", null, new JsonHttpResponseHandler() {
             @Override

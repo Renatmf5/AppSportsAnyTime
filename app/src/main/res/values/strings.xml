@@ -52,6 +52,7 @@
     <string name="title_activity_confirmacao">Confirmação</string>
     <string name="title_activity_review">Avaliação</string>
     <string name="title_activity_cadastro_jogo">Novo Jogo</string>
+    <string name="title_activity_detalhes_jogador">Detalhes</string>
 
     <string name="e_mail">E-mail</string>
     <string name="main_title">Entrar</string>
@@ -87,9 +88,20 @@
     <string name="novo_jogo_posicoes_disponiveis">Posições</string>
     <string name="novo_jogo_btn_salvar">Salvar</string>
     <string name="home_time_btn_novo_jogo">Novo jogo</string>
-    <string name="title_activity_detalhes_jogador">Detalhes</string>
     <string name="confirmacao_subtitulo">Você receberá um e-mail com a confirmação</string>
     <string name="detalhes_jogo_avaliar">Avaliar</string>
     <string name="detalhes_jogador_avaliar">Avaliar</string>
     <string name="title_activity_teste_maps">Teste Google Maps</string>
+    <string name="menu_home_time_menu_filtrar_posicao">Filtrar por posição</string>
+    <string name="filtrar_gol_label">Goleiros</string>
+    <string name="filtrar_ld_label">Laterais-direito</string>
+    <string name="filtrar_le_label">Laterais-esquerdo</string>
+    <string name="filtrar_zag_label">Zagueiros</string>
+    <string name="filtrar_vol_label">Volantes</string>
+    <string name="filtrar_mei_label">Meios-campos</string>
+    <string name="filtrar_ata_label">Atacantes</string>
+    <string name="filtrar_fixo_label">Fixos</string>
+    <string name="filtrar_ala_label">Alas</string>
+    <string name="filtrar_pivo_label">Pivôs</string>
+    <string name="filtrar_btn_filtrar">Filtrar</string>
 </resources>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10sp">
+
+    <CheckBox android:id="@+id/filtrar_gol"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/filtrar_gol_label"
+        android:textSize="20sp"
+        android:visibility="visible"
+        android:clickable="true"
+        android:layout_gravity="left"/>
+    <CheckBox android:id="@+id/filtrar_ld"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/filtrar_ld_label"
+        android:textSize="20sp" />
+    <CheckBox android:id="@+id/filtrar_le"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/filtrar_le_label"
+        android:textSize="20sp" />
+    <CheckBox android:id="@+id/filtrar_vol"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/filtrar_vol_label"
+        android:textSize="20sp" />
+    <CheckBox android:id="@+id/filtrar_zag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/filtrar_zag_label"
+        android:textSize="20sp" />
+    <CheckBox android:id="@+id/filtrar_mei"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/filtrar_mei_label"
+        android:textSize="20sp" />
+    <CheckBox android:id="@+id/filtrar_ata"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/filtrar_ata_label"
+        android:textSize="20sp" />
+    <CheckBox android:id="@+id/filtrar_fixo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/filtrar_fixo_label"
+        android:textSize="20sp" />
+    <CheckBox android:id="@+id/filtrar_ala"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/filtrar_ala_label"
+        android:textSize="20sp" />
+    <CheckBox android:id="@+id/filtrar_pivo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/filtrar_pivo_label"
+        android:textSize="20sp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#2baf2b">
+
+        <Button
+            android:id="@+id/btnFiltrar"
+            android:textAlignment="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/filtrar_btn_filtrar"
+            android:textColor="#FFF"
+            android:onClick="filtrar"
+            android:background="#2baf2b"
+            android:textSize="16sp"
+            android:padding="5sp"/>
+
+    </RelativeLayout>
+
+</LinearLayout>
