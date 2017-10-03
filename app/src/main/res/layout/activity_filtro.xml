@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10sp"
+    tools:context="com.project.apptcc.Filtro">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Filtrar por posição"
+        android:textSize="20sp"/>
+
+    <com.thomashaertel.widget.MultiSpinner
+        android:id="@+id/spnFiltroPosicoes"
+        android:layout_width="match_parent"
+        android:layout_height="30sp"
+        android:textSize="16sp"
+        android:background="#eee"/>
+
+    <Button
+        android:id="@+id/btnFiltrar"
+        android:textAlignment="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/filtrar_btn_filtrar"
+        android:textColor="#FFF"
+        android:onClick="filtrar"
+        android:background="#2baf2b"
+        android:textSize="16sp"
+        android:layout_marginTop="10sp"
+        android:padding="5sp"/>
+
+</LinearLayout>

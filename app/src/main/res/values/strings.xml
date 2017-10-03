@@ -92,7 +92,7 @@
     <string name="detalhes_jogo_avaliar">Avaliar</string>
     <string name="detalhes_jogador_avaliar">Avaliar</string>
     <string name="title_activity_teste_maps">Teste Google Maps</string>
-    <string name="menu_home_time_menu_filtrar_posicao">Filtrar por posição</string>
+    <string name="menu_home_time_menu_filtrar">Filtrar</string>
     <string name="filtrar_gol_label">Goleiros</string>
     <string name="filtrar_ld_label">Laterais-direito</string>
     <string name="filtrar_le_label">Laterais-esquerdo</string>
@@ -104,4 +104,5 @@
     <string name="filtrar_ala_label">Alas</string>
     <string name="filtrar_pivo_label">Pivôs</string>
     <string name="filtrar_btn_filtrar">Filtrar</string>
+    <string name="title_activity_filtro">Filtro</string>
 </resources>

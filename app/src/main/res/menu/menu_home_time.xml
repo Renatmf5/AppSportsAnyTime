@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.project.apptcc.HomeTime">
 
-    <item android:title="@string/menu_home_time_menu_filtrar_posicao"
-        android:id="@+id/menu_home_time_menu_filtrar_posicao"/>
+    <item android:title="@string/menu_home_time_menu_filtrar"
+        android:id="@+id/menu_home_time_menu_filtrar"/>
 
 </menu>

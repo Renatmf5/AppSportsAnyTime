@@ -159,7 +159,7 @@ public class HomeTime extends FragmentActivity implements OnMapReadyCallback {
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
         switch (item.getItemId()) {
-            case R.id.menu_home_time_menu_filtrar_posicao:
+            case R.id.menu_home_time_menu_filtrar:
                 filtrarPosicao();
                 return true;
             default:
@@ -168,8 +168,8 @@ public class HomeTime extends FragmentActivity implements OnMapReadyCallback {
     }
 
     private void filtrarPosicao() {
-        Intent i = new Intent(HomeTime.this, FiltroPosicao.class);
-        i.putExtra("goto", FiltroPosicao.GOTO_HOME_TIME);
+        Intent i = new Intent(HomeTime.this, Filtro.class);
+        i.putExtra("goto", Filtro.GOTO_HOME_TIME);
         i.putExtra("Time", this.time);
         startActivity(i);
     }

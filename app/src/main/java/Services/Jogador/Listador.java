@@ -24,12 +24,10 @@ public class Listador {
         final Promise promise = deferred.promise();
         RequestParams params = new RequestParams();
         if (posicoes != null) {
-            for (String posicao : posicoes) {
-                params.add("posicoes[]", posicao);
-            }
+            params.put("posicoes", posicoes);
         }
 
-        HttpService.getInstance().get(context, "/api/players", null, new JsonHttpResponseHandler() {
+        HttpService.getInstance().get(context, "/api/players", params, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
                 deferred.resolve(response);
