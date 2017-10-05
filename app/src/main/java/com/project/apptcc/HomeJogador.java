@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -34,7 +37,8 @@ import Services.Endereco.GeoPoint;
 import Services.Jogo.Listador;
 
 public class HomeJogador extends FragmentActivity implements OnMapReadyCallback {
-    final HomeJogador context = this;
+    private final HomeJogador context = this;
+    private ArrayList<String> posicoes = new ArrayList<>();
     private Jogador jogador;
     private ArrayList<Jogo> listItems=new ArrayList<Jogo>();
     private ArrayAdapter<Jogo> adapter;
@@ -45,6 +49,9 @@ public class HomeJogador extends FragmentActivity implements OnMapReadyCallback 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_jogador);
 
+        if (getIntent().hasExtra("posicoes")) {
+            this.posicoes = getIntent().getStringArrayListExtra("posicoes");
+        }
         this.jogador = (Jogador)getIntent().getSerializableExtra("Jogador");
         this.initJogosList();
     }
@@ -58,7 +65,7 @@ public class HomeJogador extends FragmentActivity implements OnMapReadyCallback 
         );
         listView.setAdapter(context.adapter);
 
-        Listador.execute(context)
+        Listador.execute(context, this.posicoes)
                 .done(new DoneCallback() {
                     @Override
                     public void onDone(Object result) {
@@ -135,5 +142,38 @@ public class HomeJogador extends FragmentActivity implements OnMapReadyCallback 
 
         LatLngBounds bounds = builder.build();
         this.mapa.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, 20));
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_home_jogador, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.menu_jogador_time_menu_filtrar:
+                filtrarPosicao();
+                return true;
+            case R.id.menu_home_jogador_menu_limpar:
+                limparPosicao();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void filtrarPosicao() {
+        Intent i = new Intent(HomeJogador.this, Filtro.class);
+        i.putExtra("goto", Filtro.GOTO_HOME_JOGADOR);
+        i.putExtra("Jogador", this.jogador);
+        startActivity(i);
+    }
+
+    private void limparPosicao() {
+        this.posicoes = null;
     }
 }

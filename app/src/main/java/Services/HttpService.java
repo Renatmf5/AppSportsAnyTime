@@ -12,9 +12,12 @@ public class HttpService {
     private String token;
     private static HttpService instance;
     private static final String BASE_URL = "http://ec2-52-14-152-222.us-east-2.compute.amazonaws.com";
-    private static AsyncHttpClient client = new AsyncHttpClient();
+    private static AsyncHttpClient client;
 
-    protected HttpService(){}
+    protected HttpService(){
+        this.client = new AsyncHttpClient();
+        this.client.setURLEncodingEnabled(false);
+    }
 
     public static HttpService getInstance() {
         if (null == instance) {

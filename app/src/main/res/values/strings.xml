@@ -105,4 +105,6 @@
     <string name="filtrar_pivo_label">Pivôs</string>
     <string name="filtrar_btn_filtrar">Filtrar</string>
     <string name="title_activity_filtro">Filtro</string>
+    <string name="menu_home_jogador_menu_filtrar">Filtrar</string>
+    <string name="menu_home_time_menu_limpar">Limpar filtros</string>
 </resources>

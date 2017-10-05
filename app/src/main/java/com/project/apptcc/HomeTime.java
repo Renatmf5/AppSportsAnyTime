@@ -36,12 +36,12 @@ import Services.Endereco.GeoPoint;
 import Services.Jogador.Listador;
 
 public class HomeTime extends FragmentActivity implements OnMapReadyCallback {
-    HomeTime context = this;
-    Time time;
-    ListView listView;
-    ArrayList<String> posicoes = new ArrayList<>();
-    ArrayList<Jogador> listItems = new ArrayList<Jogador>();
-    ArrayAdapter<Jogador> adapter;
+    private HomeTime context = this;
+    private Time time;
+    private ListView listView;
+    private ArrayList<String> posicoes = new ArrayList<>();
+    private ArrayList<Jogador> listItems = new ArrayList<Jogador>();
+    private ArrayAdapter<Jogador> adapter;
     private GoogleMap mapa;
 
     @Override
@@ -162,6 +162,9 @@ public class HomeTime extends FragmentActivity implements OnMapReadyCallback {
             case R.id.menu_home_time_menu_filtrar:
                 filtrarPosicao();
                 return true;
+            case R.id.menu_home_time_menu_limpar:
+                limparPosicao();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -172,5 +175,9 @@ public class HomeTime extends FragmentActivity implements OnMapReadyCallback {
         i.putExtra("goto", Filtro.GOTO_HOME_TIME);
         i.putExtra("Time", this.time);
         startActivity(i);
+    }
+
+    private void limparPosicao() {
+        this.posicoes = null;
     }
 }

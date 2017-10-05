@@ -4,5 +4,7 @@
 
     <item android:title="@string/menu_home_time_menu_filtrar"
         android:id="@+id/menu_home_time_menu_filtrar"/>
+    <item android:title="@string/menu_home_time_menu_limpar"
+        android:id="@+id/menu_home_time_menu_limpar"/>
 
 </menu>

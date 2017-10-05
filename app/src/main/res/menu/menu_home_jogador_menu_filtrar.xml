@@ -1,0 +1,10 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.project.apptcc.HomeJogador">
+
+    <item android:title="@string/menu_home_jogador_menu_filtrar"
+        android:id="@+id/menu_jogador_time_menu_filtrar"/>
+    <item android:title="Limpar filtros"
+        android:id="@+id/menu_home_jogador_menu_limpar"/>
+
+</menu>
