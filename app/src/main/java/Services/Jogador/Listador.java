@@ -16,6 +16,7 @@ import java.util.ArrayList;
 
 import Services.HttpService;
 import cz.msebera.android.httpclient.Header;
+import cz.msebera.android.httpclient.protocol.HTTP;
 
 public class Listador {
 
@@ -24,7 +25,7 @@ public class Listador {
         final Promise promise = deferred.promise();
         RequestParams params = new RequestParams();
         if (posicoes != null) {
-            params.put("posicoes", posicoes);
+            params.put("positions", posicoes);
         }
 
         HttpService.getInstance().get(context, "/api/players", params, new JsonHttpResponseHandler() {

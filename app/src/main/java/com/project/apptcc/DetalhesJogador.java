@@ -1,6 +1,5 @@
 package com.project.apptcc;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -12,10 +11,8 @@ import android.widget.Toast;
 
 import org.jdeferred.DoneCallback;
 import org.jdeferred.FailCallback;
-import org.jdeferred.Promise;
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -92,11 +89,25 @@ public class DetalhesJogador extends AppCompatActivity {
     }
 
     public void jogaPraGente(View view) {
-        Intent i = new Intent(DetalhesJogador.this, Confirmacao.class);
-        i.putExtra("flag", Confirmacao.CONFIRMACAO_JOGA_PRA_GENTE);
-        i.putExtra("Time", this.time);
-        i.putExtra("Jogador", this.jogador);
-        startActivity(i);
+        Services.Jogador.Time.Criador.execute(DetalhesJogador.this, this.jogador, this.time)
+                .done(new DoneCallback() {
+                    @Override
+                    public void onDone(Object result) {
+                        Intent i = new Intent(DetalhesJogador.this, Confirmacao.class);
+                        i.putExtra("flag", Confirmacao.CONFIRMACAO_JOGA_PRA_GENTE);
+                        i.putExtra("Time", DetalhesJogador.this.time);
+                        i.putExtra("Jogador", DetalhesJogador.this.jogador);
+                        startActivity(i);
+                    }
+                })
+                .fail(new FailCallback() {
+                    @Override
+                    public void onFail(Object result) {
+                        Toast.makeText(DetalhesJogador.this, "Ocorreu um erro ao pedir para o " +
+                                DetalhesJogador.this.jogador.getNome() + " jogar para vocês. " +
+                                "Por favor, tente novamente", Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 
     public void avaliar(View view) {

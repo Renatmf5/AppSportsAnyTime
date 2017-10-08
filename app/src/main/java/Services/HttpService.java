@@ -16,7 +16,7 @@ public class HttpService {
 
     protected HttpService(){
         this.client = new AsyncHttpClient();
-        this.client.setURLEncodingEnabled(false);
+        //this.client.setURLEncodingEnabled(false);
     }
 
     public static HttpService getInstance() {

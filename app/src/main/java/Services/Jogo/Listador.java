@@ -24,7 +24,7 @@ public class Listador {
         final Promise promise = deferred.promise();
         RequestParams params = new RequestParams();
         if (posicoes != null) {
-            params.put("posicoes", posicoes);
+            params.put("positions", posicoes);
         }
 
         HttpService.getInstance().get(context, "/api/games", params, new JsonHttpResponseHandler() {

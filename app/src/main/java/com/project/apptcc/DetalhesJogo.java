@@ -100,11 +100,24 @@ public class DetalhesJogo extends FragmentActivity implements OnMapReadyCallback
     }
 
     public void queroJogar(View view) {
-        Intent i = new Intent(DetalhesJogo.this, Confirmacao.class);
-        i.putExtra("flag", Confirmacao.CONFIRMACAO_QUERO_JOGAR);
-        i.putExtra("Jogo", this.jogo);
-        i.putExtra("Jogador", this.jogador);
-        startActivity(i);
+        Services.Jogo.Jogador.Criador.execute(DetalhesJogo.this, this.jogo, this.jogador)
+                .done(new DoneCallback() {
+                    @Override
+                    public void onDone(Object result) {
+                        Intent i = new Intent(DetalhesJogo.this, Confirmacao.class);
+                        i.putExtra("flag", Confirmacao.CONFIRMACAO_QUERO_JOGAR);
+                        i.putExtra("Jogo", DetalhesJogo.this.jogo);
+                        i.putExtra("Jogador", DetalhesJogo.this.jogador);
+                        startActivity(i);
+                    }
+                })
+                .fail(new FailCallback() {
+                    @Override
+                    public void onFail(Object result) {
+                        Toast.makeText(DetalhesJogo.this, "Ocorreu um erro ao registrar o seu " +
+                                "pedido para jogar. Por favor, tente novamente", Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 
     public void avaliar(View view) {
