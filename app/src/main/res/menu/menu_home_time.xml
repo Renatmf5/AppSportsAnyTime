@@ -2,6 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.project.apptcc.HomeTime">
 
+    <item android:title="@string/menu_home_time_jogadores_convidados"
+        android:id="@+id/menu_home_time_jogadores_convidados"/>
     <item android:title="@string/menu_home_time_menu_filtrar"
         android:id="@+id/menu_home_time_menu_filtrar"/>
     <item android:title="@string/menu_home_time_menu_limpar"

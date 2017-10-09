@@ -165,6 +165,9 @@ public class HomeTime extends FragmentActivity implements OnMapReadyCallback {
             case R.id.menu_home_time_menu_limpar:
                 limparPosicao();
                 return true;
+            case R.id.menu_home_time_jogadores_convidados:
+                jogadoresConvidados();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -179,5 +182,13 @@ public class HomeTime extends FragmentActivity implements OnMapReadyCallback {
 
     private void limparPosicao() {
         this.posicoes = null;
+        this.initJogadoresList();
+        this.onMapReady(this.mapa);
+    }
+
+    private void jogadoresConvidados() {
+        Intent i = new Intent(HomeTime.this, JogadoresTimeActivity.class);
+        i.putExtra("Time", this.time);
+        startActivity(i);
     }
 }

@@ -100,7 +100,7 @@ public class DetalhesJogo extends FragmentActivity implements OnMapReadyCallback
     }
 
     public void queroJogar(View view) {
-        Services.Jogo.Jogador.Criador.execute(DetalhesJogo.this, this.jogo, this.jogador)
+        Services.Jogo.Jogador.Criador.execute(DetalhesJogo.this, this.jogo)
                 .done(new DoneCallback() {
                     @Override
                     public void onDone(Object result) {

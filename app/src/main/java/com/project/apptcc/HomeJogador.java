@@ -175,5 +175,7 @@ public class HomeJogador extends FragmentActivity implements OnMapReadyCallback 
 
     private void limparPosicao() {
         this.posicoes = null;
+        this.initJogosList();
+        this.onMapReady(this.mapa);
     }
 }

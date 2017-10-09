@@ -19,7 +19,7 @@ import Services.HttpService;
 import cz.msebera.android.httpclient.Header;
 
 public class Criador {
-    public static Promise execute (Context context, Jogador jogador, Time time) {
+    public static Promise execute (Context context, Jogador jogador) {
         final Deferred deferred = new DeferredObject();
         final Promise promise = deferred.promise();
 
@@ -27,7 +27,7 @@ public class Criador {
 
         HttpService.getInstance().post(
                 context,
-                "/api/players/" + jogador.getId() + "/teams/" + time.getId(),
+                "/api/players/" + jogador.getId() + "/teams",
                 params,
                 new JsonHttpResponseHandler() {
                     @Override

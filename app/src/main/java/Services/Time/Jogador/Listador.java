@@ -1,4 +1,4 @@
-package Services.Jogador.Time;
+package Services.Time.Jogador;
 
 import android.content.Context;
 
@@ -11,19 +11,19 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import Objetos.Jogador;
-import Objetos.Jogo;
+import Objetos.Time;
 import Services.HttpService;
 import cz.msebera.android.httpclient.Header;
 
 public class Listador {
 
-    public static Promise execute(Context context, Jogador jogador) {
+    public static Promise execute(Context context, Time time) {
         final Deferred deferred = new DeferredObject();
         final Promise promise = deferred.promise();
 
         HttpService.getInstance().get(
                 context,
-                "/api/players/" + jogador.getId() + "/teams",
+                "/api/teams/" + time.getId() + "/players",
                 null,
                 new JsonHttpResponseHandler() {
                     @Override

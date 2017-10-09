@@ -21,7 +21,6 @@ import Objetos.Review;
 import Objetos.Time;
 import Services.Jogador.Avaliacao.Listador;
 
-
 public class DetalhesJogador extends AppCompatActivity {
     DetalhesJogador context = this;
     Jogador jogador;
@@ -89,7 +88,7 @@ public class DetalhesJogador extends AppCompatActivity {
     }
 
     public void jogaPraGente(View view) {
-        Services.Jogador.Time.Criador.execute(DetalhesJogador.this, this.jogador, this.time)
+        Services.Time.Jogador.Criador.execute(DetalhesJogador.this, this.time, this.jogador)
                 .done(new DoneCallback() {
                     @Override
                     public void onDone(Object result) {
